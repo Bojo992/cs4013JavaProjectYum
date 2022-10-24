@@ -1,4 +1,4 @@
-#CS4013 Project specification
+# CS4013 Project specification
 
 •	Customers
 ```
@@ -31,7 +31,7 @@
   Should specify type of payment (cash, card, etc.).
 ```
 
-##Submition Requirement
+## Submition Requirement
 ```
   • A document outlining the Class Responsibility Collaboration (CRC) cards. These can be created in a word document.
   • A UML class diagram showing the relationships between the classes.
