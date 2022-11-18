@@ -9,7 +9,20 @@ public class Table {
         this.availability = availability;
     }
 
+
+     /*------------------
+       Getters/Setters
+      ------------------*/
+
     public void setAvailability(boolean availability) {
         this.availability = availability;
+    }
+
+    public int getTableNo() {
+        return tableNo;
+    }
+
+    public boolean Availability() {
+        return availability;
     }
 }
