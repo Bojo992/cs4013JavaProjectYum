@@ -1,12 +1,12 @@
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 
 public class Customer {
     private String name;
     private String email;
     private String phone;
     private int noOfCustomer;
-    private DateTimeFormatter date
-            = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    private LocalDate date = LocalDate.now();
     private Table table;
 
     public Customer(String name, String email, String phone) {
@@ -23,14 +23,14 @@ public class Customer {
 
     }
 
-    public void makeReservation(DateTimeFormatter date, Table table, int noOfCustomer){
+    public void makeReservation(LocalDate date, Table table, int noOfCustomer){
         this.date = date;
         this.table = table;
         this.noOfCustomer = noOfCustomer;
 
     }
 
-    public void changeReservation(DateTimeFormatter date, Table table){
+    public void changeReservation(LocalDate date, Table table){
         this.date = date;
         this.table = table;
     }
@@ -63,11 +63,11 @@ public class Customer {
         return phone;
     }
 
-    public DateTimeFormatter getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(DateTimeFormatter date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
