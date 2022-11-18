@@ -12,27 +12,20 @@ public class Menu {
     public void run() {
         System.out.println("Restaurant Menu");
 
-        boolean more = true;
-
-        while (more) {
+        while (true) {
             System.out.println("Login as E)mployee or U)ser");
             String command = in.nextLine().toUpperCase();
 
             switch (command) {
                 case "E" -> {
                     System.out.println("Enter employee's ID and password");
-                    //csv or new EmployeeLoginMenu(in).run; just like the user one
+                    new EmployeeMenu(in).run();
                 }
 
                 case "U" -> {
                     new UserLoginMenu(in).run();
                 }
-
             }
-
         }
-
-
     }
-
 }
