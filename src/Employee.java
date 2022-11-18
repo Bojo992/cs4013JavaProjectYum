@@ -14,26 +14,33 @@ public class Employee {
     }
 
     /*
-    Search which table is taken.
-    Create an order for a table:
-    •	Should specify person’s meal
-    •	Meal should be coherent with menu of restaurant
-    Change status of an order.
+       + seeOrders()
+       + seeOrder(table:int)
+       + addOrder(Order:Order) void
+       + seeTable() arr
+       + reserveTable(cust:cust , table:int)
 
-    public void tableOrder(param) {
-        Order customer = new Order(); //from another class (maybe an array list for orders)
+       public String seeOrders() {
+            return orders;
+       }
 
-        if (check if order is coherent with menu) {
-            customer.add(param);
-        } else {
-            maybe throw a try and catch here with the exceptions to handle it
-        }
-    }
+       public String seeOrder(int table) {
+            if (table.reserved == false || table.exist == true) {
+                return table.toString();
+            } else {
+                return System.out.print("There's a miss input.");
+            }
+       }
 
-    public void orderStatus(param) {
-        order.setStatus(param); // setStatus() from the order class
-    }
-    */
+       public void addOrder(Order order) {
+            check with Szymon how to this
+            hash map, array, arraylist? no idea
+       }
+
+       public void reserveTable(Customer customer,int table) {
+            //yes
+       }
+     */
 
     public String getName() {
         return name;
