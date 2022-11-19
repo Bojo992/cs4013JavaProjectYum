@@ -1,3 +1,5 @@
+package CLI;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -10,7 +12,7 @@ public class Menu {
     }
 
     public void run() {
-        System.out.println("Restaurant Menu");
+        System.out.println("Restaurant CLI.Menu");
 
         while (true) {
             System.out.println("Login as E)mployee or U)ser");

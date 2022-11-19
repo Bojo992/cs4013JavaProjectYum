@@ -4,7 +4,6 @@ import java.util.List;
 public class Restaurant {
     private List<Food> menu;
 
-
     public Restaurant() {
         menu = new ArrayList<>();
     }

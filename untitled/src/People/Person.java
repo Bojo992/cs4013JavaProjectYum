@@ -1,3 +1,5 @@
+package People;
+
 public class Person {
     private String name;
     private String email;
@@ -35,12 +37,5 @@ public class Person {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String toString() {
-        return "Account Details : \n" +
-                "Name : " + name + "\n" +
-                "Email : " + email + "\n" +
-                "Phone Number : " + phone + "\n";
     }
 }
