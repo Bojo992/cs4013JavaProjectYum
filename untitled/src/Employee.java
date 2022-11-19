@@ -1,13 +1,13 @@
 public class Employee extends Person{
-    private String department; //distinguish from chef and waiter
+    private String title; //distinguish from chef and waiter
 
-    public Employee(String name, String email, String phone, String department) {
+    public Employee(String name, String email, String phone, String title) {
         super(name, email, phone);
-        this.department = department;
+        this.title = title;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getTitle() {
+        return title;
     }
 
     @Override
@@ -16,6 +16,6 @@ public class Employee extends Person{
                 "Name : " + getName() + "\n" +
                 "Email : " + getEmail() + "\n" +
                 "Phone Number : " + getPhone() + "\n" +
-                "Department : " + department;
+                "Department : " + title;
     }
 }
