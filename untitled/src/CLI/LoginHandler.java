@@ -6,21 +6,21 @@ public class LoginHandler {
     private String username;
     private String password;
     private Scanner in;
+    private String type;
 
-    public LoginHandler(String username, String password, Scanner in) {
+    public LoginHandler(String username, String password, Scanner in, String type) {
         this.username = username;
         this.password = password;
         this.in = in;
+        this.type = type;
     }
 
     //TODO check if the password is correct before login
     public void run() {
-        if(username.contains("u_")) {
-            new UserMenu(in).run();
-        } else if (username.contains("e_")) {
-            new EmployeeMenu(in).run();
-        } else if (username.contains("c_")) {
-            new ChefMenu(in).run();
+        switch (type) {
+            case "customer" -> new UserMenu(in).run();
+            case "employee" -> new EmployeeMenu(in).run();
+            case "chef" -> new ChefMenu(in).run();
         }
     }
 }

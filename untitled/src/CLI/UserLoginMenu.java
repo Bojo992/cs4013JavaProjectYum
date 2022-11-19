@@ -3,10 +3,15 @@ package CLI;
 import java.util.Scanner;
 
 public class UserLoginMenu {
+    private String username;
+    private String password;
     private Scanner in;
+    private String type;
+    private LoginHandler login;
 
-    public UserLoginMenu(Scanner in) {
+    public UserLoginMenu(Scanner in, String type) {
         this.in = in;
+        this.type = type;
     }
 
     public void run() {
@@ -17,18 +22,24 @@ public class UserLoginMenu {
             switch (command) {
                 case "L" -> {
                     System.out.print("Enter Username : ");
-                    String username = in.nextLine().toUpperCase();
+                    String username1 = in.nextLine().toUpperCase();
                     System.out.print("Enter password : ");
-                    String password = in.nextLine().toUpperCase();
-                    new LoginHandler(username, password, in);
-                    new UserMenu(in).run();
+                    String password1 = in.nextLine().toUpperCase();
+
+                    if(username1.equals(this.username) && password1.equals(this.password)) {
+                        login.run();
+                    } else {
+                        System.out.println("Invalid Username and/or Password");
+                    }
                 }
 
                 case "C" -> {
-                    System.out.print("Create Username :");
-                    String username = in.nextLine().toUpperCase();
-                    System.out.print("Create Password :");
-                    String password = in.nextLine().toUpperCase();
+                    System.out.print("Create Username : ");
+                    this.username = in.nextLine().toUpperCase();
+                    System.out.print("Create Password : ");
+                    this.password = in.nextLine().toUpperCase();
+
+                    login = new LoginHandler(username, password, in, type);
                 }
 
                 case "B" -> {

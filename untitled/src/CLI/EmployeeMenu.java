@@ -40,21 +40,24 @@ public class EmployeeMenu {
                 }
 
                 case "A" -> {
-                    System.out.println("Select the Restaurant.Table you want to add order to : ");
-                    //ToDo display tables and customers
-
                     while (true) {
+                        System.out.println("Select the Restaurant.Table you want to add order to : ");
+                        //ToDo display tables and customers
+
+                        System.out.println("Print something with a choice 1) 2) 3) F)");
+                        command = in.nextLine();
+
                         switch (command) {
-                            case "T" -> { //ToDo need table numbers
+                            case "1" -> { //ToDo need table numbers
                                 System.out.println("A)dd meal, C)hange meal, F)inish ");
                             }
 
-                            case "A" -> { //ToDo need menu ArrayList
+                            case "2" -> { //ToDo need menu ArrayList
                                 System.out.println("What items would you like to add? : ");
                                 //ToDo list of menu from arraylist of food
                             }
 
-                            case "C" -> { //ToDo need table numbers
+                            case "3" -> { //ToDo need table numbers
                                 System.out.println("Previous eal : ");
                                 //ToDo getMeal from food class
                                 System.out.println("New meal : ");

@@ -19,14 +19,8 @@ public class Menu {
             String command = in.nextLine().toUpperCase();
 
             switch (command) {
-                case "E" -> {
-                    System.out.println("Enter employee's ID and password");
-                    new EmployeeMenu(in).run();
-                }
-
-                case "U" -> {
-                    new UserLoginMenu(in).run();
-                }
+                case "E" -> new UserLoginMenu(in, "employee").run();
+                case "U" -> new UserLoginMenu(in, "customer").run();
             }
         }
     }
