@@ -1,3 +1,5 @@
+package Restaurant;
+
 public class Table {
     private int tableNo;
     private int seats;

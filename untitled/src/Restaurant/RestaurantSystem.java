@@ -1,3 +1,5 @@
+package Restaurant;
+
 import CLI.Menu;
 
 public class RestaurantSystem {

@@ -1,3 +1,5 @@
+package Restaurant;
+
 import java.util.ArrayList;
 
 public class Food {

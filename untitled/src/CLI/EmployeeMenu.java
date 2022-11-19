@@ -40,7 +40,7 @@ public class EmployeeMenu {
                 }
 
                 case "A" -> {
-                    System.out.println("Select the Table you want to add order to : ");
+                    System.out.println("Select the Restaurant.Table you want to add order to : ");
                     //ToDo display tables and customers
 
                     while (true) {
