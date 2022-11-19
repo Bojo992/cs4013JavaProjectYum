@@ -1,3 +1,5 @@
+package CLI;
+
 import java.util.Scanner;
 
 public class LoginHandler {
