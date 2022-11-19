@@ -1,21 +1,16 @@
 import java.time.LocalDate;
 
-public class Customer {
-    private String name;
-    private String email;
-    private String phone;
+public class Customer extends Person {
     private int noOfCustomer;
     private LocalDate date = LocalDate.now();
     private Table table;
 
-    public Customer(String name, String email, String phone) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
+    public Customer(String name) {
+        super(name);
     }
 
-    public Customer(String name) {
-        this.name = name;
+    public Customer(String name, String email, String phone) {
+        super(name, email, phone);
     }
 
     public void makeOrder(Table table, Food food){
@@ -45,21 +40,8 @@ public class Customer {
        Getters/Setters
       ------------------*/
 
-
     public Table getTable() {
         return table;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     public LocalDate getDate() {
@@ -68,18 +50,6 @@ public class Customer {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
 }
