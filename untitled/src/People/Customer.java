@@ -2,6 +2,7 @@ package People;
 import Restaurant.Food;
 import Restaurant.Table;
 
+import Restaurant.*;
 import java.time.LocalDate;
 
 public class Customer extends Person {
