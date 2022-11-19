@@ -1,5 +1,6 @@
 package People;
 
+import Restaurant.*;
 import java.time.LocalDate;
 
 public class Customer extends Person {
