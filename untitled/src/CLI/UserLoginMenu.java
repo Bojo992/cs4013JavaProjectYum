@@ -43,8 +43,6 @@ public class UserLoginMenu {
                 }
 
                 case "B" -> new Menu().run();
-
-
             }
         }
     }
