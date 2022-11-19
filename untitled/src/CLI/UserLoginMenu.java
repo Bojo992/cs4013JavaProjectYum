@@ -31,9 +31,9 @@ public class UserLoginMenu {
                     String password = in.nextLine().toUpperCase();
                 }
 
-                case "B" -> {
-                    break;
-                }
+                case "B" -> new Menu().run();
+
+
             }
         }
     }

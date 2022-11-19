@@ -15,7 +15,7 @@ public class LoginHandler {
 
     //TODO check if the password is correct before login
     public void run() {
-        if(username.contains("u_")) {
+        if (username.contains("u_")) {
             new UserMenu(in).run();
         } else if (username.contains("e_")) {
             new EmployeeMenu(in).run();

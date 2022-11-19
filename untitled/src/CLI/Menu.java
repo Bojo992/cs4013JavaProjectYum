@@ -13,9 +13,10 @@ public class Menu {
 
     public void run() {
         System.out.println("Restaurant.Restaurant CLI.Menu");
+        boolean quit = true;
 
-        while (true) {
-            System.out.println("Login as E)mployee or U)ser");
+        while (quit) {
+            System.out.println("Login as E)mployee, U)ser or Q)uit");
             String command = in.nextLine().toUpperCase();
 
             switch (command) {
@@ -26,6 +27,9 @@ public class Menu {
 
                 case "U" -> {
                     new UserLoginMenu(in).run();
+                }
+                case "Q" -> {
+                    quit = false;
                 }
             }
         }

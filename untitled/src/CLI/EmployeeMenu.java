@@ -11,7 +11,7 @@ public class EmployeeMenu {
 
     public void run() {
         while (true) {
-            System.out.println("W)alk-in, A)dd order, V)iew tables, C)hange order, L)ist Order, B)ack");
+            System.out.println("W)alk-in, A)dd order, V)iew tables, C)hange order, O)rder List, L)ogout");
             String command = in.nextLine().toUpperCase();
 
             switch (command) {
@@ -32,45 +32,57 @@ public class EmployeeMenu {
                                 //ToDo display tables with a number for choice
                             }
 
-                            case "G" -> {
-                                break;
-                            }
+                            case "G" -> new EmployeeMenu(in).run();
                         }
                     }
                 }
 
                 case "A" -> {
-                    System.out.println("Select the Restaurant.Table you want to add order to : ");
-                    //ToDo display tables and customers
-
                     while (true) {
-                        switch (command) {
-                            case "T" -> { //ToDo need table numbers
+                        System.out.println("Select the Restaurant.Table you want to add order to : ");
+                        //ToDo display tables and customers
+
+                        System.out.println("Print something with a choice 1) 2) 3) F)");
+                        command = in.nextLine();
+
+                        switch (command) { //ToDo check if works, testing merging cases
+                            case "1", "2", "3" -> { //ToDo need table numbers
                                 System.out.println("A)dd meal, C)hange meal, F)inish ");
+                                switch (command) {
+                                    case "A" -> {
+                                        System.out.println("What items would you like to add? : ");
+                                    }
+                                    case "C" -> {
+                                        System.out.println("Previous meal : ");
+                                        System.out.println("New meal : ");
+                                    }
+                                    case "F" -> new EmployeeMenu(in).run();
+                                }
+
+                                //This shouldn't be here
+                                //it would need another switch, requesting input A)dd meal, C)hange meal, F)inish
                             }
 
-                            case "A" -> { //ToDo need menu ArrayList
-                                System.out.println("What items would you like to add? : ");
-                                //ToDo list of menu from arraylist of food
-                            }
+                            //ToDo need menu ArrayList
 
-                            case "C" -> { //ToDo need table numbers
-                                System.out.println("Previous eal : ");
-                                //ToDo getMeal from food class
-                                System.out.println("New meal : ");
-                                //ToDo setMeal from food class
-                            }
+                            case "F" -> new EmployeeMenu(in).run();
 
-                            case "F" -> {
-                                break;
-                            }
+
                         }
                     }
                 }
 
                 case "V" -> {
-                    System.out.println("All tables : ");
+                    //showTable()
+                    //break;
+
+                    System.out.println("B)ack");
                     //ToDo tables from tables object
+                    switch (command) {
+                        case "B" -> new EmployeeMenu(in).run();
+
+                    }
+
                 }
 
                 case "C" -> {
@@ -78,16 +90,15 @@ public class EmployeeMenu {
                     //ToDo Display all orders based on table selection??? or based on just order number?
                 }
 
-                case "L" -> {
+                case "O" -> {
                     System.out.println("Here is a list of all the current orders : ");
                     //ToDo make sure that list updates depending on order status.
                 }
 
-                case "B" -> {
-                    break;
+                case "L" -> {
+                    new Menu().run();
                 }
             }
-
         }
     }
 }

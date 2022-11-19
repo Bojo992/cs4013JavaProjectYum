@@ -94,16 +94,16 @@ public class UserMenu {
                                 //ToDo setTime() from reserv class
                             }
 
-                            case "G" -> {
-                                break;
-                            }
+                            case "G" -> new UserMenu(in).run();
+
+
                         }
                     }
                 }
 
-                case "B" -> {
-                    break;
-                }
+                case "B" -> new Menu().run();
+
+
             }
         }
     }
