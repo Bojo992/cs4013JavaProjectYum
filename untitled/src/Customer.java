@@ -52,4 +52,8 @@ public class Customer extends Person {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
