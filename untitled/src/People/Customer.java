@@ -1,4 +1,6 @@
 package People;
+import Restaurant.Food;
+import Restaurant.Table;
 
 import java.time.LocalDate;
 
