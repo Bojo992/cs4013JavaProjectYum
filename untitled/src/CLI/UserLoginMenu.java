@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UserLoginMenu {
     private Scanner in;
     private String type;
-    private LoginHandler login;
+    private LoginManager login;
 
     public UserLoginMenu(Scanner in, String type) {
         this.in = in;
@@ -25,7 +25,7 @@ public class UserLoginMenu {
                     System.out.print("Enter password : ");
                     String password = in.nextLine().toUpperCase();
 
-                    if(LoginManager.checkPass(username, login.getPassword(), password)) {
+                    if(LoginManager.checkPass(username, password)) {
                         login.run();
                     } else {
                         System.out.println("Invalid Username and/or Password");
@@ -38,7 +38,7 @@ public class UserLoginMenu {
                     System.out.print("Create Password : ");
                     String password = in.nextLine().toUpperCase();
 
-                    login = new LoginHandler(username, password, in, type);
+                    login = new LoginManager(type, in);
                     LoginManager.createAcc(username, password);
                 }
 
