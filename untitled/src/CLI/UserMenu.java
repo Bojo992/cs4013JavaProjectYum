@@ -24,17 +24,20 @@ public class UserMenu extends UtilsMenu {
                     System.out.println("Choose from which restaurant you would like to book : ");
                     var restaurant = (Restaurant) chooseFirstType(DataStorage.getAllRestaurants().values().toArray());
 
-                    /*
-                    var table = (Table) chooseFirstType(DataStorage.getAllTables().values().toArray());
                     System.out.print("Restaurant : ");
-                    String chosenRestaurants = in.nextLine();
+                    String chosenRestaurant = in.nextLine();
 
-                    System.out.println("Please enter the Date and Table of your reservation : ");
-                    System.out.print("Date : ");
-                    String date = in.nextLine();
+                    System.out.println("Choose the date of your reservation : ");
+                    System.out.print("Date (DD/MM/YYYY) : ");
+                    String chosenDate = in.nextLine();
+
+                    System.out.println("Choose which table you would like to reserve : ");
+                    var table = (Table) chooseFirstType(DataStorage.getAllTables().values().toArray());
                     System.out.println("Table : ");
                     String chosenTable = in.nextLine();
-                    */
+
+                    //TODO reserve(chosenRestaurant, chosenDate, chosenTable);
+                    System.out.println("Successful reservation.");
                 }
 
                 case "V" -> {
