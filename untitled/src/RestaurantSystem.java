@@ -1,6 +1,4 @@
-package Restaurant;
-
-import CLI.Menu;
+import CLI.*;
 
 public class RestaurantSystem {
     public static void main(String[] args) {
