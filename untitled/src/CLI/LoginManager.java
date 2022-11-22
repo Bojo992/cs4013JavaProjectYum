@@ -2,6 +2,7 @@ package CLI;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import utils.dataStorage;
 
 public class LoginManager {
     private String type;
@@ -11,6 +12,7 @@ public class LoginManager {
     public LoginManager(String type, Scanner in) {
         this.type = type;
         this.in = in;
+        dataStorage.setAllUsernamesAndPasswords(loginManager);
     }
 
     public static void createAcc(String user, String pass) {
