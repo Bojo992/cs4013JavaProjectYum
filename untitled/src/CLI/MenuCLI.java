@@ -2,11 +2,11 @@ package CLI;
 
 import java.util.Scanner;
 
-public class Menu {
+public class MenuCLI {
 
     private Scanner in;
 
-    public Menu() {
+    public MenuCLI() {
 
         in = new Scanner(System.in);
     }
