@@ -1,10 +1,12 @@
 package Restaurant;
 
+import CLI.LoginManager;
 import People.*;
 import utils.DataStorage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Restaurant {
     private Menu menu;
@@ -31,17 +33,36 @@ public class Restaurant {
         this.id = id + "";
     }
 
-    public void addWaiter(Waiter newWaiter) {
-        waiters.add(newWaiter);
-        //LoginManager.createAcc();
+    private String getRandomNum() {
+        Random random = new Random();
+        int number = random.nextInt(999999);
+
+        return String.format("%6d", number);
     }
 
+    public void addWaiter(Waiter waiter) {
+        waiters.add(waiter);
+        String username = "" + waiter.hashCode();
+        String password = getRandomNum();
 
-    /*
-    add array lists from the datastorage
-    - add waiter() which will generate an user + password and pass thru the login manager
-    same for others
-     */
+        LoginManager.createAcc(username, password);
+    }
+
+    public void addChef(Chef chef) {
+        chefs.add(chef);
+        String username = "" + chef.hashCode();
+        String password = getRandomNum();
+
+        LoginManager.createAcc(username, password);
+    }
+
+    public void addTable(Table tableToAdd) {
+        if (tables.size() < numberOfTables) {
+            tables.add(tableToAdd);
+        } else {
+            throw new IndexOutOfBoundsException("You have maximum number of tables");
+        }
+    }
 
     public Menu getMenu() {
         return menu;
@@ -65,17 +86,5 @@ public class Restaurant {
 
     public String getId() {
         return id;
-    }
-
-    public void addTable(Table tableToAdd) {
-        if (tables.size() < numberOfTables) {
-            tables.add(tableToAdd);
-        } else {
-            throw new IndexOutOfBoundsException("You have maximum number of tables");
-        }
-    }
-
-    public void addChef(Chef chef) {
-        chefs.add(chef);
     }
 }

@@ -24,10 +24,7 @@ public class UserMenu extends UtilsMenu {
                     System.out.println("Choose from which restaurant you would like to book : ");
                     var restaurant = (Restaurant) chooseFirstType(DataStorage.getAllRestaurants().values().toArray());
 
-                    System.out.print("Restaurant : ");
-                    String chosenRestaurant = in.nextLine();
-
-                    System.out.println("Choose the date of your reservation : ");
+                    System.out.println("Enter the date of your reservation : ");
                     System.out.print("Date (DD/MM/YYYY) : ");
                     String chosenDate = in.nextLine();
 
@@ -46,6 +43,10 @@ public class UserMenu extends UtilsMenu {
                 }
 
                 case "C" -> {
+                    System.out.println("Choose which reservation you would like to cancel : ");
+                    //TODO showReservations()
+                    showFirstType(DataStorage.getAllTables().values().toArray());
+                    /*
                     boolean quitFromChangeRes = true;
                     while (quitFromChangeRes) {
                         System.out.println("Which reservation would you like to change? :");
@@ -105,15 +106,14 @@ public class UserMenu extends UtilsMenu {
                             case "G" -> {
                                 quitFromChangeRes = false;
                             }
-
-
                         }
-                    }
+                    } */
                 }
 
                 case "B" -> {
                     quitBackToMain = false;
                 }
+
             }
         }
     }
