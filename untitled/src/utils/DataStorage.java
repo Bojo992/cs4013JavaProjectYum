@@ -89,4 +89,8 @@ public class DataStorage {
     public static ArrayList<Food> getMenuForRestaurant(String restaurantId) {
         return allMenus.get(allRestaurants.get(restaurantId));
     }
+
+    public static void addRestaurant(Restaurant restaurant) {
+        allRestaurants.put(restaurant.getId(), restaurant);
+    }
 }

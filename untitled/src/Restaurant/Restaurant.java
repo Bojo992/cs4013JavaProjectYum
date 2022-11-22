@@ -1,24 +1,34 @@
 package Restaurant;
 
-import CLI.LoginManager;
-import CLI.Menu;
 import People.*;
+import utils.DataStorage;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
-    private List<Food> menu;
+    private Menu menu;
     private ArrayList<Table> tables;
     private ArrayList<Waiter> waiters;
     private ArrayList<Chef> chefs;
     private ArrayList<Customer> customers;
+    private int numberOfTables;
+    private String id;
 
     public Restaurant(int numberOfTables) {
-        menu = new ArrayList<>();
-        tables = new ArrayList<>(numberOfTables);
-        waiters = new ArrayList<>();
-        chefs = new ArrayList<>();
-        customers = new ArrayList<>();
+        this.menu = new Menu();
+        this.tables = new ArrayList<>();
+        this.waiters = new ArrayList<>();
+        this.chefs = new ArrayList<>();
+        this.customers = new ArrayList<>();
+        this.numberOfTables = numberOfTables;
+        int id = DataStorage.getAllRestaurants().keySet().size();
+
+        while (DataStorage.getAllRestaurants().containsKey(id + "")) {
+            id++;
+        }
+
+        this.id = id + "";
     }
 
     public void addWaiter(Waiter newWaiter) {
@@ -33,7 +43,7 @@ public class Restaurant {
     same for others
      */
 
-    public List<Food> getMenu() {
+    public Menu getMenu() {
         return menu;
     }
 
@@ -51,5 +61,21 @@ public class Restaurant {
 
     public ArrayList<Customer> getCustomers() {
         return customers;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void addTable(Table tableToAdd) {
+        if (tables.size() < numberOfTables) {
+            tables.add(tableToAdd);
+        } else {
+            throw new IndexOutOfBoundsException("You have maximum number of tables");
+        }
+    }
+
+    public void addChef(Chef chef) {
+        chefs.add(chef);
     }
 }
