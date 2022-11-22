@@ -15,7 +15,7 @@ public class Customer extends Person {
     }
 
     public Customer(String name, String email, String phone) {
-        super(name, email, phone);
+        super(name, phone);
     }
 
     public void makeOrder(Table table, Food food){

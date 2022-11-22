@@ -12,7 +12,7 @@ public class Menu {
     }
 
     public void run() {
-        System.out.println("Restaurant.Restaurant CLI.Menu");
+        System.out.println("Restaurant CLI Menu");
         boolean quit = true;
 
         while (quit) {

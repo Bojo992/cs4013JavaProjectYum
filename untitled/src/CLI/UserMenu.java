@@ -19,8 +19,6 @@ public class UserMenu {
 
             switch (command) {
                 case "R" -> {
-                    System.out.print("Email : ");
-                    String email = in.nextLine().toUpperCase();
                     System.out.print("Name : ");
                     String name = in.nextLine().toUpperCase();
                     System.out.print("People Attending : ");
