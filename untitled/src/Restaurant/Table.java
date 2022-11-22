@@ -1,14 +1,16 @@
 package Restaurant;
 
+import java.util.HashMap;
+
 public class Table {
     private int tableNo;
     private int seats;
-    private boolean availability;
+    private HashMap<String, Boolean> availability;
 
-    public Table(int tableNo, int seats, boolean availability) {
+    public Table(int tableNo, int seats) {
         this.tableNo = tableNo;
         this.seats = seats;
-        this.availability = availability;
+        this.availability = new HashMap<>();
     }
 
 
@@ -16,15 +18,13 @@ public class Table {
        Getters/Setters
       ------------------*/
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+    public void changeAvailability(String date) {
+        availability.put(date, true);
     }
 
     public int getTableNo() {
         return tableNo;
     }
 
-    public boolean Availability() {
-        return availability;
-    }
+
 }

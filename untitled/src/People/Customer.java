@@ -2,7 +2,6 @@ package People;
 import Restaurant.Food;
 import Restaurant.Table;
 
-import Restaurant.*;
 import java.time.LocalDate;
 
 public class Customer extends Person {
@@ -33,13 +32,6 @@ public class Customer extends Person {
         this.date = date;
         this.table = table;
     }
-
-    public void cancelReservation(Table table){
-        this.table = table;
-        table.setAvailability(true);
-        this.date = null;
-    }
-
 
     /*------------------
        Getters/Setters
