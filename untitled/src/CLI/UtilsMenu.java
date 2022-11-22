@@ -3,12 +3,12 @@ package CLI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class UtilsMenu<T> {
+public abstract class UtilsMenu<Object> {
     private Scanner in;
 
     public abstract void run();
 
-    protected T Choice(ArrayList<T> choices) {
+    protected Object Choice(ArrayList<Object> choices) {
         if (choices.isEmpty()) {
             System.out.println("There are no options chose from");
             return null;
@@ -17,7 +17,7 @@ public abstract class UtilsMenu<T> {
             int i = 0;
 
             System.out.printf(" %d) Exit", i);
-            for (T c : choices) {
+            for (Object c : choices) {
                 i++;
                 System.out.printf(" %d) %s", i, c.toString());
                 System.out.println();
@@ -45,9 +45,9 @@ public abstract class UtilsMenu<T> {
         }
     }
 
-    protected void show(ArrayList<T> choices){
+    protected void show(ArrayList<Object> choices){
         int i = 0;
-        for (T c:choices){
+        for (Object c:choices){
             System.out.printf(" %d) %s", i, c.toString());
         }
     }
