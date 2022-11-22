@@ -2,17 +2,16 @@ package CLI;
 
 import java.util.HashMap;
 import java.util.Scanner;
-import utils.dataStorage;
+import utils.DataStorage;
 
 public class LoginManager {
     private String type;
     private Scanner in;
-    private static HashMap<String, String> loginManager = new HashMap<String, String>();
+    private static HashMap<String, String> loginManager = DataStorage.getAllUsernamesAndPasswords();
 
     public LoginManager(String type, Scanner in) {
         this.type = type;
         this.in = in;
-        dataStorage.setAllUsernamesAndPasswords(loginManager);
     }
 
     public static void createAcc(String user, String pass) {

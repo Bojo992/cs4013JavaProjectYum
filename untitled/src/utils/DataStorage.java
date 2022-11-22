@@ -6,7 +6,7 @@ import Restaurant.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class dataStorage {
+public class DataStorage {
     private static HashMap<String, Restaurant> allRestaurants = new HashMap<>();
     private static HashMap<Restaurant, ArrayList<Table>> allTables = new HashMap<>();
     private static HashMap<Restaurant, ArrayList<Waiter>> allWaiters = new HashMap<>();
@@ -20,7 +20,7 @@ public class dataStorage {
     }
 
     public static void setAllUsernamesAndPasswords(HashMap<String, String> allUsernamesAndPasswords) {
-        dataStorage.allUsernamesAndPasswords = allUsernamesAndPasswords;
+        DataStorage.allUsernamesAndPasswords = allUsernamesAndPasswords;
     }
 
     //CSV SETUP AND BACKUP FUNCTIONS
@@ -69,7 +69,7 @@ public class dataStorage {
     }
 
     public static void setAllMenus(HashMap<Restaurant, ArrayList<Food>> allMenus) {
-        dataStorage.allMenus = allMenus;
+        DataStorage.allMenus = allMenus;
     }
 
 
