@@ -1,5 +1,7 @@
 package Restaurant;
 
+import javax.management.AttributeValueExp;
+import java.security.PublicKey;
 import java.util.HashMap;
 
 public class Table {
@@ -14,16 +16,24 @@ public class Table {
     }
 
 
+
      /*------------------
        Getters/Setters
       ------------------*/
+    public int getTableNo() {
+         return tableNo;
+     }
+
+    public HashMap<String, Boolean> getAvailability() {
+        return availability;
+    }
 
     public void changeAvailability(String date) {
         availability.put(date, true);
     }
 
-    public int getTableNo() {
-        return tableNo;
+    public void removeReservation(String date) {
+        availability.remove(date);
     }
 
 
