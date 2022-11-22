@@ -15,7 +15,8 @@ public class UserLoginMenu {
     }
 
     public void run() {
-        while (true) {
+        boolean quit = true;
+        while (quit) {
             System.out.println("L)ogin, C)reate Account, B)ack");
             String command = in.nextLine().toUpperCase();
 
@@ -42,7 +43,9 @@ public class UserLoginMenu {
                     login = new LoginHandler(username, password, in, type);
                 }
 
-                case "B" -> new Menu().run();
+                case "B" -> {
+                    quit = false;
+                }
             }
         }
     }

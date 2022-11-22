@@ -10,7 +10,8 @@ public class ChefMenu {
     }
 
     public void run() {
-        while (true) {
+        boolean quit = true;
+        while (quit) {
             System.out.println("Select a table you would like to view : ");
             //ToDo List all tables from tables class
             String command = in.nextLine().toUpperCase();
@@ -28,7 +29,7 @@ public class ChefMenu {
                 }
 
                 case "L" -> { //Returns to Login page
-                    new Menu().run();
+                    quit = false;
                 }
             }
         }
