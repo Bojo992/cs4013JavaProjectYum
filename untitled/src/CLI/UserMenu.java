@@ -12,7 +12,8 @@ public class UserMenu {
     }
 
     public void run() {
-        while (true) {
+        boolean quitBackToMain = true;
+        while (quitBackToMain) {
             System.out.println("R)eserve a table, V)iew reservation,C)hange Reservation, B)ack");
             String command = in.nextLine().toUpperCase();
 
@@ -39,7 +40,8 @@ public class UserMenu {
                 }
 
                 case "C" -> {
-                    while (true) {
+                    boolean quitFromChangeRes = true;
+                    while (quitFromChangeRes) {
                         System.out.println("Which reservation would you like to change? :");
                         String input = in.nextLine().toUpperCase();
                         //TODO showReservations() from reservation class
@@ -94,14 +96,18 @@ public class UserMenu {
                                 //ToDo setTime() from reserv class
                             }
 
-                            case "G" -> new UserMenu(in).run();
+                            case "G" -> {
+                                quitFromChangeRes = false;
+                            }
 
 
                         }
                     }
                 }
 
-                case "B" -> new Menu().run();
+                case "B" -> {
+                    quitBackToMain = false;
+                }
 
 
             }

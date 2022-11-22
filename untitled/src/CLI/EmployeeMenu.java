@@ -10,13 +10,15 @@ public class EmployeeMenu {
     }
 
     public void run() {
-        while (true) {
+        boolean quitToMain = true;
+        while (quitToMain) {
             System.out.println("W)alk-in, A)dd order, V)iew tables, C)hange order, O)rder List, L)ogout");
             String command = in.nextLine().toUpperCase();
 
             switch (command) {
                 case "W" -> {
-                    while (true) {
+                    boolean quitFromWalkIn = true;
+                    while (quitFromWalkIn) {
                         System.out.println("C)heck available tables, R)eserve table, G)o Back");
                         command = in.nextLine().toUpperCase();
 
@@ -32,13 +34,16 @@ public class EmployeeMenu {
                                 //ToDo display tables with a number for choice
                             }
 
-                            case "G" -> new EmployeeMenu(in).run();
+                            case "G" -> {
+                                quitFromWalkIn = false;
+                            }
                         }
                     }
                 }
 
                 case "A" -> {
-                    while (true) {
+                    boolean quitFromAddOrder = true;
+                    while (quitFromAddOrder) {
                         System.out.println("Select the Restaurant.Table you want to add order to : ");
                         //ToDo display tables and customers
 
@@ -56,7 +61,9 @@ public class EmployeeMenu {
                                         System.out.println("Previous meal : ");
                                         System.out.println("New meal : ");
                                     }
-                                    case "F" -> new EmployeeMenu(in).run();
+                                    case "F" -> {
+                                        quitFromAddOrder = false;
+                                    }
                                 }
 
                                 //This shouldn't be here
@@ -65,7 +72,9 @@ public class EmployeeMenu {
 
                             //ToDo need menu ArrayList
 
-                            case "F" -> new EmployeeMenu(in).run();
+                            case "F" -> {
+                                quitFromAddOrder = false;
+                            }
 
 
                         }
@@ -76,12 +85,14 @@ public class EmployeeMenu {
                     //showTable()
                     //break;
 
-                    System.out.println("B)ack");
-                    //ToDo tables from tables object
-                    switch (command) {
-                        case "B" -> new EmployeeMenu(in).run();
-
-                    }
+//                    System.out.println("B)ack");
+//                    //ToDo tables from tables object
+//                    switch (command) {
+//                        case "B" -> {
+//
+//                        }
+//
+//                    }
 
                 }
 
@@ -96,7 +107,7 @@ public class EmployeeMenu {
                 }
 
                 case "L" -> {
-                    new Menu().run();
+                    quitToMain = false;
                 }
             }
         }
