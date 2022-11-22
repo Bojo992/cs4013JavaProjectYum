@@ -23,4 +23,8 @@ public class LoginHandler {
             case "chef" -> new ChefMenu(in).run();
         }
     }
+
+    public String getPassword() {
+        return password;
+    }
 }

@@ -3,8 +3,6 @@ package CLI;
 import java.util.Scanner;
 
 public class UserLoginMenu {
-    private String username;
-    private String password;
     private Scanner in;
     private String type;
     private LoginHandler login;
@@ -15,18 +13,19 @@ public class UserLoginMenu {
     }
 
     public void run() {
-        while (true) {
+        boolean quit = true;
+        while (quit) {
             System.out.println("L)ogin, C)reate Account, B)ack");
             String command = in.nextLine().toUpperCase();
 
             switch (command) {
                 case "L" -> {
                     System.out.print("Enter Username : ");
-                    String username1 = in.nextLine().toUpperCase();
+                    String username= in.nextLine().toUpperCase();
                     System.out.print("Enter password : ");
-                    String password1 = in.nextLine().toUpperCase();
+                    String password = in.nextLine().toUpperCase();
 
-                    if(username1.equals(this.username) && password1.equals(this.password)) {
+                    if(LoginManager.checkPass(username, login.getPassword(), password)) {
                         login.run();
                     } else {
                         System.out.println("Invalid Username and/or Password");
@@ -35,14 +34,15 @@ public class UserLoginMenu {
 
                 case "C" -> {
                     System.out.print("Create Username : ");
-                    this.username = in.nextLine().toUpperCase();
+                    String username = in.nextLine().toUpperCase();
                     System.out.print("Create Password : ");
-                    this.password = in.nextLine().toUpperCase();
+                    String password = in.nextLine().toUpperCase();
 
                     login = new LoginHandler(username, password, in, type);
+                    LoginManager.createAcc(username, password);
                 }
 
-                case "B" -> new Menu().run();
+                case "B" -> quit = false;
             }
         }
     }
