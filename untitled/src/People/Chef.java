@@ -1,8 +1,8 @@
 package People;
 
 public class Chef extends Employee{
-    public Chef(String name, String email, String phone, String title) {
-        super(name, email, phone, title);
+    public Chef(String name,String phone, String title) {
+        super(name,phone, title);
     }
 
     public void changeStatus() {
