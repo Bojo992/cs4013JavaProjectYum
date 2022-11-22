@@ -12,6 +12,7 @@ public class dataStorage {
     private static HashMap<Restaurant, ArrayList<Waiter>> allWaiters = new HashMap<>();
     private static HashMap<Restaurant, ArrayList<Chef>> allChefs = new HashMap<>();
     private static HashMap<Restaurant, ArrayList<Customer>> allCustomers = new HashMap<>();
+//    private static HashMap<Restaurant, RestaurantMenu>
 
     public static HashMap<String, Restaurant> getAllRestaurants() {
         return allRestaurants;
