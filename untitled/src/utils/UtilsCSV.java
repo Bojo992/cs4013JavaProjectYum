@@ -136,7 +136,7 @@ public class UtilsCSV {
                 line = in.nextLine();
 
 
-                while (!line.split(", ")[0].equals("category")) {
+                while (!line.split(", ")[0].equals("category") && !line.split(", ")[0].equals("restaurant")) {
                     lineArray = line.split(", ");
                     Food food = new Food(lineArray[0], Double.parseDouble(lineArray[1]));
                     menu.addFood(food, category);
