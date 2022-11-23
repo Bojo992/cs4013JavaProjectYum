@@ -60,6 +60,7 @@ public class UserLoginMenu {
                     customer = new Customer(name);
 
                     customer.setId(customer.hashCode() + "");
+                    customer.setPassword(password);
 
                     while (DataStorage.getAllUsernamesAndPasswords().containsKey(customer.getId())) {
                         Random random = new Random();
@@ -69,7 +70,7 @@ public class UserLoginMenu {
                     System.out.println("    Your username: " + customer);
                     System.out.println("    Your password: " + password);
 
-                    login = new LoginManager(type, in);
+                    login = new LoginManager(type, in, customer);
                     LoginManager.createAcc(customer.getId(), customer);
                 }
 

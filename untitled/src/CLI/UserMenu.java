@@ -1,5 +1,6 @@
 package CLI;
 
+import People.Person;
 import utils.*;
 import Restaurant.*;
 import com.sun.security.jgss.GSSUtil;
@@ -8,9 +9,11 @@ import java.util.Scanner;
 
 public class UserMenu extends UtilsMenu {
     private Scanner in;
+    private Person user;
 
-    public UserMenu(Scanner in) {
+    public UserMenu(Scanner in, Person user) {
         this.in = in;
+        this.user = user;
     }
 
     public void run() {
@@ -51,7 +54,6 @@ public class UserMenu extends UtilsMenu {
                 case "B" -> {
                     quitBackToMain = false;
                 }
-
             }
         }
     }

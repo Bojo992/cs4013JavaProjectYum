@@ -7,13 +7,15 @@ import People.Person;
 import utils.DataStorage;
 
 public class LoginManager {
+    private Person user;
     private String type;
     private Scanner in;
     private static HashMap<String, Person> loginManager = DataStorage.getAllUsernamesAndPasswords();
 
-    public LoginManager(String type, Scanner in) {
+    public LoginManager(String type, Scanner in, Person user) {
         this.type = type;
         this.in = in;
+        this.user = user;
     }
 
     public static void createAcc(String user, Person person) {
@@ -28,9 +30,9 @@ public class LoginManager {
 
     public void run() {
         switch (type) {
-            case "customer" -> new UserMenu(in).run();
-            case "employee" -> new EmployeeMenu(in).run();
-            case "chef" -> new ChefMenu(in).run();
+            case "customer" -> new UserMenu(in, user).run();
+            case "employee" -> new EmployeeMenu(in, user).run();
+            case "chef" -> new ChefMenu(in, user).run();
         }
     }
 }
