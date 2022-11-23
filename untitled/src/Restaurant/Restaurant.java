@@ -173,4 +173,8 @@ public class Restaurant {
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
+
+    public void addMenu(Menu menu) {
+        this.menu = menu;
+    }
 }

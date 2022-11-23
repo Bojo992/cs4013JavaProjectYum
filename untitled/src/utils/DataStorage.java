@@ -2,6 +2,7 @@ package utils;
 
 import People.*;
 import Restaurant.*;
+import org.w3c.dom.html.HTMLIsIndexElement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,8 +30,8 @@ public class DataStorage {
         return allRestaurants;
     }
 
-    public static void setAllRestaurants(HashMap<String, Restaurant> allRestaurants) {
-        allRestaurants = allRestaurants;
+    public static void setAllRestaurants(ArrayList<Restaurant> input) {
+        allRestaurants = input;
     }
 
     public static HashMap<Restaurant, ArrayList<Table>> getAllTables() {

@@ -47,7 +47,7 @@ public class Menu {
 
     public class Category{
         String name;
-        ArrayList<Food> food;
+        ArrayList<Food> food = new ArrayList<Food>();
 
         public Category(String name) {
             this.name = name;
