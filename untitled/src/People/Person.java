@@ -7,6 +7,8 @@ package People;
 public class Person {
     private String name;
     private String phone;
+    private String id;
+    private String password;
 
     /**
      * Constructor with a specific name.
@@ -22,7 +24,24 @@ public class Person {
      */
     public Person(String name, String phone) {
         this(name);
+
         this.phone = phone;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**

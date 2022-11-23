@@ -161,9 +161,12 @@ public class CreateRestaurant {
                         chefTitle = input.nextLine();
                     }
 
+                    System.out.println("    Enter password for chef: ");
+                    String password = input.nextLine();
+
                     var chef = new Chef(chefName,chefPhoneNumber, chefTitle);
 
-                    restaurant.addChef(chef);
+                    restaurant.addChef(chef, password);
                 }
 
                 case "A" -> {
@@ -186,9 +189,12 @@ public class CreateRestaurant {
                         waiterPhoneNumber = input.nextLine();
                     }
 
+                    System.out.println("    Enter password for waiter: ");
+                    String password = input.nextLine();
+
                     var waiter = new Waiter(waiterName, waiterPhoneNumber, "Waiter");
 
-                    restaurant.addWaiter(waiter);
+                    restaurant.addWaiter(waiter, password);
                 }
 
                 case "B" -> {

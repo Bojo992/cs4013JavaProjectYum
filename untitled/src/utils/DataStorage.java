@@ -13,13 +13,13 @@ public class DataStorage {
     private static HashMap<Restaurant, ArrayList<Chef>> allChefs = new HashMap<>();
     private static ArrayList<Customer> allCustomers = new ArrayList<>();
     private static HashMap<Restaurant, ArrayList<Food>> allMenus = new HashMap<>();
-    private static HashMap<String, String> allUsernamesAndPasswords = new HashMap<>();
+    private static HashMap<String, Person> allUsernamesAndPasswords = new HashMap<>();
 
-    public static HashMap<String, String> getAllUsernamesAndPasswords() {
+    public static HashMap<String, Person> getAllUsernamesAndPasswords() {
         return allUsernamesAndPasswords;
     }
 
-    public static void setAllUsernamesAndPasswords(HashMap<String, String> allUsernamesAndPasswords) {
+    public static void setAllUsernamesAndPasswords(HashMap<String, Person> allUsernamesAndPasswords) {
         DataStorage.allUsernamesAndPasswords = allUsernamesAndPasswords;
     }
 

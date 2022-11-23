@@ -63,12 +63,18 @@ public class Restaurant {
      *  LoginManager class.
      * @param waiter
      */
-    public void addWaiter(Waiter waiter) {
+    public void addWaiter(Waiter waiter, String password) {
         waiters.add(waiter);
         String username = "" + waiter.hashCode();
-        String password = getRandomNum();
 
-        LoginManager.createAcc(username, password);
+        while (DataStorage.getAllUsernamesAndPasswords().containsKey(username)) {
+            username = "" + getRandomNum();
+        }
+
+        waiter.setId(username);
+        waiter.setPassword(password);
+
+        LoginManager.createAcc(username, waiter);
     }
 
     /**
@@ -79,13 +85,15 @@ public class Restaurant {
      *  LoginManager class.
      * @param chef
      */
-
-    public void addChef(Chef chef) {
+    public void addChef(Chef chef, String paswor) {
         chefs.add(chef);
         String username = "" + chef.hashCode();
-        String password = getRandomNum();
 
-        LoginManager.createAcc(username, password);
+        while (DataStorage.getAllUsernamesAndPasswords().containsKey(username)) {
+            username = id + "c" + getRandomNum();
+        }
+
+        LoginManager.createAcc(username, chef);
     }
 
     /**
@@ -157,5 +165,13 @@ public class Restaurant {
      */
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }
