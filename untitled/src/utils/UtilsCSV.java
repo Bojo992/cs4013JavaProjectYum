@@ -1,8 +1,8 @@
-package Restaurant;
+package utils;
 
 import People.Chef;
 import People.Waiter;
-
+import Restaurant.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -43,58 +43,6 @@ public class UtilsCSV {
         return new Food(name,price);
     }
 
-    public void writeRestaurant(Restaurant restaurant) throws IOException {
-        File restaurantsCSV = new File("restaurant.csv");
-        FileWriter writer;
-        Scanner in = new Scanner(restaurantsCSV);
-
-        if (restaurantsCSV.exists() && restaurantsCSV.canWrite()) {
-            writer = new FileWriter(restaurantsCSV, true);
-        } else {
-            writer = new FileWriter(restaurantsCSV);
-        }
-
-        StringBuilder restaurantString = new StringBuilder();
-
-        restaurantString.append(String.format("restaurant, %s, %d\r\n", restaurant.getId(), restaurant.getNumberOfTables()));
-        restaurantString.append("tables, " + "\r\n");
-
-        for (Table table : restaurant.getTables()) {
-            String tableCSV = table.getTableNo() + ", " + table.getSeats() + ", ";
-
-            for (String date : table.getAvailability().keySet()) {
-                restaurantString.append(tableCSV + date + ", " + table.getAvailability().get(date) + "\r\n");
-            }
-        }
-
-        restaurantString.append("waiters\r\n");
-
-        for (Waiter waiter : restaurant.getWaiters()) {
-            restaurantString.append(waiter.toCSV());
-        }
-
-        restaurantString.append("chef\r\n");
-
-        for (Chef chef : restaurant.getChefs()) {
-            restaurantString.append(chef.toCSV());
-        }
-
-        restaurantString.append("menu\r\n");
-
-        for (var category: restaurant.getMenu().getCategories()) {
-            restaurantString.append(category + ", " + category.getName() + "\r\n");
-
-            for (Food food: category.getFood()) {
-                restaurantString.append(food.toCSV());
-            }
-        }
-
-
-        writer.write(restaurantString.toString());
-
-        writer.close();
-    }
-
     public ArrayList<Restaurant> readRestaurants() throws FileNotFoundException {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
 
@@ -107,9 +55,12 @@ public class UtilsCSV {
         boolean skip = true;
 
         Scanner in = new Scanner(restaurantsCSV);
+        String line = "";
 
         while (in.hasNextLine()) {
-            String line = in. nextLine();
+            if (!line.contains("restaurant, ")) {
+                line = in.nextLine();
+            }
             String restaurantId = line.split(", ")[1];
             int numberOfTables = Integer.parseInt(line.split(", ")[2]);
 
@@ -133,15 +84,11 @@ public class UtilsCSV {
                     line = in.nextLine();
                 }
 
-                lineArray = tableSignature.split(", ");
-
                 Table temp = new Table(Integer.parseInt(lineArray[0]), Integer.parseInt(lineArray[1]));
 
                 temp.setAvailability(reservations);
 
                 restaurant.addTable(temp);
-
-                line = in.nextLine();
             }
 
             line = in.nextLine();
@@ -186,15 +133,20 @@ public class UtilsCSV {
 
                 menu.addCategory(category);
 
-                while (!line.contains("category, ")) {
-                    line = in.nextLine();
+                line = in.nextLine();
+
+
+                while (!line.split(", ")[0].equals("category")) {
                     lineArray = line.split(", ");
                     Food food = new Food(lineArray[0], Double.parseDouble(lineArray[1]));
+                    if (!in.hasNextLine()) {
+                        break;
+                    }
+
+                    line = in.nextLine();
 
                     menu.addFood(food, category);
                 }
-
-                line = in.nextLine();
             }
 
             restaurant.setMenu(menu);
@@ -204,5 +156,77 @@ public class UtilsCSV {
 
 
         return restaurants;
+    }
+
+    public void writeRestaurants(ArrayList<Restaurant> allRestaurants) {
+        File clear = new File("restaurant.csv");
+
+        if (clear.exists()) {
+            clear.delete();
+        }
+
+        for (Restaurant restaurant: allRestaurants) {
+            try {
+                writeRestaurant(restaurant);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void writeRestaurant(Restaurant restaurant) throws IOException {
+        File restaurantsCSV = new File("restaurant.csv");
+        FileWriter writer;
+        Scanner in = new Scanner(restaurantsCSV);
+
+        if (restaurantsCSV.exists() && restaurantsCSV.canWrite()) {
+            writer = new FileWriter(restaurantsCSV, true);
+        } else {
+            writer = new FileWriter(restaurantsCSV);
+        }
+
+        StringBuilder restaurantString = new StringBuilder();
+
+        restaurantString.append(String.format("restaurant, %s, %d\r\n", restaurant.getId(), restaurant.getNumberOfTables()));
+        restaurantString.append("tables, " + "\r\n");
+
+        for (Table table : restaurant.getTables()) {
+            String tableCSV = table.getTableNo() + ", " + table.getSeats() + ", ";
+
+            if (table.getAvailability().isEmpty()) {
+                restaurantString.append(tableCSV + "null, null\r\n");
+            }
+
+            for (String date : table.getAvailability().keySet()) {
+                restaurantString.append(tableCSV + date + ", " + table.getAvailability().get(date) + "\r\n");
+            }
+        }
+
+        restaurantString.append("waiters\r\n");
+
+        for (Waiter waiter : restaurant.getWaiters()) {
+            restaurantString.append(waiter.toCSV());
+        }
+
+        restaurantString.append("chef\r\n");
+
+        for (Chef chef : restaurant.getChefs()) {
+            restaurantString.append(chef.toCSV());
+        }
+
+        restaurantString.append("menu\r\n");
+
+        for (var category: restaurant.getMenu().getCategories()) {
+            restaurantString.append("category, " + category.getName() + "\r\n");
+
+            for (Food food: category.getFood()) {
+                restaurantString.append(food.toCSV());
+            }
+        }
+
+
+        writer.write(restaurantString.toString());
+
+        writer.close();
     }
 }
