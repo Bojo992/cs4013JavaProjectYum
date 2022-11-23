@@ -1,5 +1,6 @@
 package CLI;
 
+import People.Person;
 import Restaurant.Table;
 import utils.DataStorage;
 import utils.UtilsMenu;
@@ -7,9 +8,11 @@ import java.util.Scanner;
 
 public class EmployeeMenu extends UtilsMenu {
     private Scanner in;
+    private Person user;
 
-    public EmployeeMenu(Scanner in) {
+    public EmployeeMenu(Scanner in, Person user) {
         this.in = in;
+        this.user = user;
     }
 
     public void run() {
