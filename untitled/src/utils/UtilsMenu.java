@@ -7,7 +7,7 @@ public abstract class UtilsMenu {
 
     public abstract void run();
 
-    protected Object chooseFirstType(Object[] choices) {
+    public Object pick(Object[] choices) {
         if (choices.length == 0) {
             System.out.println("There are no options chose from");
             return null;
@@ -45,7 +45,7 @@ public abstract class UtilsMenu {
         }
     }
 
-    protected void showFirstType(Object[] choices){
+    public void show(Object[] choices){
         int i = 1;
         for (Object c:choices){
             System.out.printf(" %d) %s", i, c.toString());

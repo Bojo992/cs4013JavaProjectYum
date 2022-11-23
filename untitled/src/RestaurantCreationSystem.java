@@ -1,6 +1,6 @@
 import CLI.CreateRestaurant;
 import Restaurant.*;
-import Restaurant.UtilsCSV;
+import utils.UtilsCSV;
 import utils.DataStorage;
 
 import java.io.File;

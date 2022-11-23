@@ -57,7 +57,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Table number: " + table.getTableNo() + "Time: " + date.toString();
+        return "Restaurant id: " + restaurant.getId() + ", Table number: " + table.getTableNo() + ", Time: " + date + ", Number of people: " + noOfCustomer;
     }
 
     public String toCSV(){

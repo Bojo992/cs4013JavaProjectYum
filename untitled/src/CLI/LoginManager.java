@@ -3,6 +3,7 @@ package CLI;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import People.Customer;
 import People.Person;
 import utils.DataStorage;
 
@@ -30,7 +31,7 @@ public class LoginManager {
 
     public void run() {
         switch (type) {
-            case "customer" -> new UserMenu(in, user).run();
+            case "customer" -> new UserMenu(in, (Customer) user).run();
             case "employee" -> new EmployeeMenu(in, user).run();
             case "chef" -> new ChefMenu(in, user).run();
         }
@@ -38,5 +39,9 @@ public class LoginManager {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setUser(String userName) {
+        user = loginManager.get(userName);
     }
 }

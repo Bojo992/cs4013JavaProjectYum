@@ -1,17 +1,16 @@
 package CLI;
 
-import People.Person;
+import People.Customer;
 import utils.*;
 import Restaurant.*;
-import com.sun.security.jgss.GSSUtil;
-import java.util.Date;
+
 import java.util.Scanner;
 
 public class UserMenu extends UtilsMenu {
     private Scanner in;
-    private Person user;
+    private Customer user;
 
-    public UserMenu(Scanner in, Person user) {
+    public UserMenu(Scanner in, Customer user) {
         this.in = in;
         this.user = user;
     }
@@ -25,30 +24,60 @@ public class UserMenu extends UtilsMenu {
             switch (command) {
                 case "R" -> {
                     System.out.println("Choose from which restaurant you would like to book : ");
-                    var restaurant = (Restaurant) chooseFirstType(DataStorage.getAllRestaurants().toArray());
+                    var restaurant = (Restaurant) pick(DataStorage.getAllRestaurants().toArray());
 
                     System.out.println("Enter the date of your reservation : ");
                     System.out.print("Date (DD/MM/YYYY) : ");
                     String chosenDate = in.nextLine();
 
                     System.out.println("Choose which table you would like to reserve : ");
-                    var table = (Table) chooseFirstType(DataStorage.getAllTables().values().toArray());
+                    var table = (Table) pick(DataStorage.getAllTables().values().toArray());
 
-                    //TODO reserve(restaurant, chosenDate, chosenTable) for this user
+                    System.out.print("Enter number of people attending: ");
+                    int numberOfPeople = -1;
 
+                    while (true) {
+                        try {
+                            numberOfPeople = Integer.parseInt(in.nextLine());
+
+                            if (numberOfPeople > table.getSeats()) {
+                                throw new IndexOutOfBoundsException("This table can not fit this amount of people.");
+                            }
+
+                            break;
+                        } catch (Exception ex) {
+                            if (ex instanceof IndexOutOfBoundsException) {
+                                System.out.println(ex.getMessage());
+                            }
+                            System.out.print("Please enter number of people attending: ");
+                        }
+                    }
+
+
+                    var reservation = new Reservation(user, chosenDate, table, restaurant, numberOfPeople);
+
+                    user.addReservation(reservation);
                     System.out.println("Successful reservation.");
                 }
 
                 case "V" -> {
                     System.out.println("These are your reservation :");
-                    showFirstType(DataStorage.getAllTables().values().toArray());
-                    //TODO show the reservation for this user
+                    show(user.getReservations().toArray());
+                    System.out.println();
                 }
 
                 case "C" -> {
                     System.out.println("Choose which reservation you would like to cancel : ");
-                    //TODO showReservations() for this user
-                    showFirstType(DataStorage.getAllTables().values().toArray());
+                    Reservation reservation = (Reservation) pick(user.getReservations().toArray());
+
+                    if (reservation == null) {
+                        break;
+                    }
+
+                    user.removeReservation(reservation);
+
+                    System.out.println("Reservation was removed.");
+                    System.out.println();
                 }
 
                 case "B" -> {

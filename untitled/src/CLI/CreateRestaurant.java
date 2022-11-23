@@ -46,7 +46,9 @@ public class CreateRestaurant {
                     while (true) {
                         try {
                             numberOfSeats = Integer.parseInt(input.nextLine());
-                            break;
+                            if (numberOfSeats > 0) {
+                                break;
+                            }
                         } catch (Exception ex) {
                             System.out.print("Please enter the number of seats: ");
                         }
@@ -76,7 +78,7 @@ public class CreateRestaurant {
                         menu.addCategory(categoryName);
                         
                         while (true) {
-                            System.out.println("    Enter meal name: ");
+                            System.out.print("    Enter meal name: ");
 
                             String mealName = input.nextLine();
 
@@ -85,16 +87,18 @@ public class CreateRestaurant {
                                 mealName = input.nextLine();
                             }
                             
-                            System.out.println("    Enter meal price: ");
+                            System.out.print("    Enter meal price: ");
 
                             double mealPrice = -1;
 
                             try {
                                 mealPrice = Double.parseDouble(input.nextLine());
-                            } finally {}
+                            } catch (Exception ex) {
+                                mealPrice = -1;
+                            }
                             
-                            while (mealPrice < 0) {
-                                System.out.print("    Please enter the name of category: ");
+                            while (mealPrice <= 0) {
+                                System.out.print("    Please enter meal price: ");
                                 try {
                                     mealPrice = Double.parseDouble(input.nextLine());
                                 } catch (Exception ex) {
@@ -108,31 +112,34 @@ public class CreateRestaurant {
 
                             System.out.print("Do you want to add another meal to this category? Y)es or N)o: ");
                             
-                            String addMoreFood = input.nextLine();
+                            String addMoreFood = input.nextLine().toUpperCase();
 
-                            while (!addMoreFood.equals("Y") || !addMoreFood.equals("N")) {
+                            while (!addMoreFood.equals("Y") && !addMoreFood.equals("N")) {
                                 System.out.print("Please enter Y)es or N)o:");
-                                addMoreFood = input.nextLine();
+                                addMoreFood = input.nextLine().toUpperCase();
                             }
 
                             if (addMoreFood.equals("N")) {
+                                restaurant.addMenu(menu);
                                 break;
                             }
                         }
 
                         System.out.print("Do you want to add another category to this menu? Y)es or N)o: ");
 
-                        String addMoreCategories = input.nextLine();
+                        String addMoreCategories = input.nextLine().toUpperCase();
 
-                        while (!addMoreCategories.equals("Y") || !addMoreCategories.equals("N")) {
+                        while (!addMoreCategories.equals("Y") && !addMoreCategories.equals("N")) {
                             System.out.print("Please enter Y)es or N)o:");
-                            addMoreCategories = input.nextLine();
+                            addMoreCategories = input.nextLine().toUpperCase();
                         }
 
                         if (addMoreCategories.equals("N")) {
                             break;
                         }
                     }
+
+                    System.out.println();
                 }
 
                 case "E" -> {
@@ -161,17 +168,18 @@ public class CreateRestaurant {
                         chefTitle = input.nextLine();
                     }
 
-                    System.out.println("    Enter password for chef: ");
+                    System.out.print("    Enter password for chef: ");
                     String password = input.nextLine();
 
                     var chef = new Chef(chefName,chefPhoneNumber, chefTitle);
 
                     restaurant.addChef(chef, password);
+
+                    System.out.println();
                 }
 
                 case "A" -> {
                     System.out.println("ADD NEW WAITER");
-                    System.out.println();
 
                     System.out.print("    Enter waiter's name: ");
                     String waiterName = input.nextLine();
@@ -189,7 +197,7 @@ public class CreateRestaurant {
                         waiterPhoneNumber = input.nextLine();
                     }
 
-                    System.out.println("    Enter password for waiter: ");
+                    System.out.print("    Enter password for waiter: ");
                     String password = input.nextLine();
 
                     var waiter = new Waiter(waiterName, waiterPhoneNumber, "Waiter");
@@ -198,8 +206,15 @@ public class CreateRestaurant {
                 }
 
                 case "B" -> {
-                    DataStorage.addRestaurant(restaurant);
-                    quit = false;
+                    if (restaurant.getTables().size() == numberOfTables &&
+                        !restaurant.getChefs().isEmpty() &&
+                        !restaurant.getWaiters().isEmpty() &&
+                        !restaurant.getMenu().getCategories().isEmpty()) {
+                        DataStorage.addRestaurant(restaurant);
+                        quit = false;
+                    } else {
+                        System.out.println("You have not finish creating your restaurant");
+                    }
                 }
             }
         }

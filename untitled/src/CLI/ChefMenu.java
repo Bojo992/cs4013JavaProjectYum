@@ -19,7 +19,7 @@ public class ChefMenu extends UtilsMenu {
         boolean quit = true;
         while (quit) {
             System.out.println("Select a table you would like to view : ");
-            var table = (Table) chooseFirstType(DataStorage.getAllTables().values().toArray());
+            var table = (Table) pick(DataStorage.getAllTables().values().toArray());
             //ToDo List all tables from tables class
             String command = in.nextLine().toUpperCase();
 

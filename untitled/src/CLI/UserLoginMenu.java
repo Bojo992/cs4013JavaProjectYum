@@ -31,6 +31,7 @@ public class UserLoginMenu {
 
                     if(LoginManager.checkPass(username, password)) {
                         login.setType(type);
+                        login.setUser(username);
                         login.run();
                     } else {
                         System.out.println("Invalid Username and/or Password");
