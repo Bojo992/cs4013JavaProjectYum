@@ -24,7 +24,6 @@ public class Customer extends Person {
 
     }
 
-<<<<<<< HEAD
     public void addReservation(Reservation reservation){
         reservations.add(reservation);
     }
@@ -33,8 +32,6 @@ public class Customer extends Person {
         reservations.remove(reservation);
     }
 
-=======
->>>>>>> ffbe52922593a2bb3d656eb8a3c64dca98e590f0
     /*------------------
        Getters/Setters
       ------------------*/

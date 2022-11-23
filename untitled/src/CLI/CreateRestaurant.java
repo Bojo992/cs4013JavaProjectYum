@@ -31,7 +31,7 @@ public class CreateRestaurant {
         }
         
         boolean quit = true;
-        var restaurant = new Restaurant(numberOfTables);
+        Restaurant restaurant = new Restaurant(numberOfTables);
 
         while (quit) {
             System.out.println("Q) Add table, W) Add menu, E) Add chef, A) Add Waiter, B) Back");
@@ -173,13 +173,9 @@ public class CreateRestaurant {
 
                     var chef = new Chef(chefName,chefPhoneNumber, chefTitle);
 
-<<<<<<< HEAD
-                    restaurant.addChef(chef, password);
-
-                    System.out.println();
-=======
                     restaurant.addEmployee(chef, password);
->>>>>>> ffbe52922593a2bb3d656eb8a3c64dca98e590f0
+                    System.out.println();
+                    restaurant.addEmployee(chef, password);
                 }
 
                 case "A" -> {

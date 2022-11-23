@@ -74,8 +74,6 @@ public class DataStorage {
         DataStorage.allMenus = allMenus;
     }
 
-<<<<<<< HEAD
-=======
     public static ArrayList<Order> getAllOrders() {
         return allOrders;
     }
@@ -84,7 +82,6 @@ public class DataStorage {
         DataStorage.allOrders = allOrders;
     }
 
->>>>>>> ffbe52922593a2bb3d656eb8a3c64dca98e590f0
     public static void addRestaurant(Restaurant restaurant) {
         allRestaurants.add(restaurant);
     }
