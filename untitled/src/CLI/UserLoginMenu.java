@@ -60,7 +60,8 @@ public class UserLoginMenu {
                         customer = new Customer(name);
                     }
 
-                    customer.setId(customer.hashCode() + "");
+                    int randomNumber = (int) (Math.floor(Math.random() * (101)));
+                    customer.setId(customer.getName() + randomNumber);
                     customer.setPassword(password);
 
                     while (DataStorage.getAllUsernamesAndPasswords().containsKey(customer.getId())) {

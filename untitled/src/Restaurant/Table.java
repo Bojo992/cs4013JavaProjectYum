@@ -8,11 +8,13 @@ public class Table {
     private int tableNo;
     private int seats;
     private HashMap<String, Boolean> availability;
+    private int numberOfTable = 0;
 
     public Table(int tableNo, int seats) {
         this.tableNo = tableNo;
         this.seats = seats;
         this.availability = new HashMap<>();
+        this.numberOfTable++;
     }
 
 
@@ -20,6 +22,11 @@ public class Table {
      /*------------------
        Getters/Setters
       ------------------*/
+
+    public int getNumberOfAllTable() {
+        return numberOfTable;
+    }
+
     public int getTableNo() {
          return tableNo;
      }
