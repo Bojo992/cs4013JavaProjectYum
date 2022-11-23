@@ -46,14 +46,14 @@ public class EmployeeMenu extends UtilsMenu {
                         switch (command) {
                             case "C" -> {
                                 System.out.println("These tables are available for walk-ins : ");
-                                showFirstType(DataStorage.getAllTables().values().toArray());
+                                show(DataStorage.getAllTables().values().toArray());
                                 //ToDo display tables that are available (this can be an option just to view for employer
                                 // info)
                             }
 
                             case "R" -> {
                                 System.out.println("Select a table for walk-in customer : ");
-                                var table = (Table) chooseFirstType(DataStorage.getAllTables().values().toArray());
+                                var table = (Table) pick(DataStorage.getAllTables().values().toArray());
                             }
 
                             case "G" -> {
@@ -66,7 +66,7 @@ public class EmployeeMenu extends UtilsMenu {
                 case "A" -> {
                     System.out.println("Select the Table you want to add order to : ");
                     boolean quitAddOrder = true;
-                    var table = (Table) chooseFirstType(DataStorage.getAllTables().values().toArray());
+                    var table = (Table) pick(DataStorage.getAllTables().values().toArray());
                     System.out.println("Add Order : ");
                     Order order = new Order(table);
                     while (quitAddOrder) {
@@ -91,12 +91,12 @@ public class EmployeeMenu extends UtilsMenu {
 
                 case "V" -> {
                     System.out.println("Here are all the tables in the restaurant : ");
-                    showFirstType(DataStorage.getAllTables().values().toArray());
+                    show(DataStorage.getAllTables().values().toArray());
                 }
 
                 case "O" -> {
                     System.out.println("Here is a list of all the current orders : ");
-                    showFirstType(restaurant.getOrders().toArray());
+                    show(restaurant.getOrders().toArray());
                 }
 
                 case "L" -> {

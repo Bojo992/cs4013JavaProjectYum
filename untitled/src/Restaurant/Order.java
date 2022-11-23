@@ -15,8 +15,8 @@ public class Order {
     public int bill() {
         int total = 0;
 
-        for (int i = 0; i < tableFood.length - 1; i++) {
-            total += tableFood[i].get(i).getPrice(); //ToDo test, not sure if it's fully functional
+        for (int i = 0; i < tableFood.size(); i++) {
+            total += tableFood.get(i).getPrice(); //ToDo test, not sure if it's fully functional
         }
 
         return total;
