@@ -107,7 +107,7 @@ public class UtilsCSV {
 
             line = in.nextLine();
 
-            while (!line.equals("menu")) {
+            while (!line.equals("orders")) {
                 String[] lineArray = line.split(", ");
 
                 var chef = new Chef(lineArray[0], lineArray[1], lineArray[2]);
@@ -119,15 +119,40 @@ public class UtilsCSV {
                 line = in.nextLine();
             }
 
-            if (in.hasNextLine()) {
-                line = in.nextLine();
-            } else {
-                skip = false;
+            line = in.nextLine();
+
+            while (!line.equals("menu")) {
+                String[] lineArray = line.split(", ");
+                int tableNumber = Integer.parseInt(lineArray[1]);
+                String orderSignature = lineArray[0] + ", " + lineArray[1];
+
+                Table table = new Table(0, 0);
+                for (Table t: restaurant.getTables()) {
+                    if (t.getTableNo() == tableNumber) {
+                        table = t;
+                        break;
+                    }
+                }
+
+                Order order = new Order(table);
+                order.setStatus(lineArray[0]);
+
+                while (line.contains(orderSignature)) {
+                    lineArray = line.split(", ");
+
+                    Food food = new Food(lineArray[2], Double.parseDouble(lineArray[3]));
+
+                    order.addFood(food);
+                    line = in.nextLine();
+                }
+
+                restaurant.addOrder(order);
             }
 
+            line = in.nextLine();
             Menu menu = new Menu();
 
-            while(in.hasNextLine() && !line.contains("restaurant, ") && skip) {
+            while(in.hasNextLine() && !line.contains("restaurant, ")) {
                 String[] lineArray = line.split(", ");
                 String category = lineArray[1];
 
@@ -215,6 +240,16 @@ public class UtilsCSV {
 
         for (Chef chef : restaurant.getChefs()) {
             restaurantString.append(chef.toCSV());
+        }
+
+        restaurantString.append("orders\r\n");
+
+        for (Order order: restaurant.getOrders()) {
+            String orderSignature = order.getStatus() + ", " + order.getTableOrder().getTableNo() + ", ";
+
+            for (Food food: order.getTableFood()) {
+                restaurantString.append(orderSignature + food.toCSV());
+            }
         }
 
         restaurantString.append("menu\r\n");

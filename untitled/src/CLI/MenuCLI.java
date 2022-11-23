@@ -21,7 +21,6 @@ public class MenuCLI {
         UtilsCSV csv = new UtilsCSV();
 
         try {
-            csv.readRestaurants();
             DataStorage.setAllRestaurants(csv.readRestaurants());
             DataStorage.getAllRestaurants();
         } catch (FileNotFoundException e) {
