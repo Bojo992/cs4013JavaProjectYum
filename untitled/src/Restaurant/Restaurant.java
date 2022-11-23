@@ -72,6 +72,10 @@ public class Restaurant {
         return tables;
     }
 
+    public int getNumberOfTables() {
+        return numberOfTables;
+    }
+
     public ArrayList<Waiter> getWaiters() {
         return waiters;
     }
