@@ -2,9 +2,7 @@ package utils;
 
 import People.Chef;
 import People.Waiter;
-import Restaurant.Food;
-import Restaurant.Restaurant;
-
+import Restaurant.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
