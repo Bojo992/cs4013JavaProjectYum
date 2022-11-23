@@ -2,8 +2,11 @@ package CLI;
 
 import java.util.HashMap;
 import java.util.Scanner;
+<<<<<<< HEAD
 
 import People.Customer;
+=======
+>>>>>>> ffbe52922593a2bb3d656eb8a3c64dca98e590f0
 import People.Person;
 import utils.DataStorage;
 

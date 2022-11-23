@@ -3,9 +3,7 @@ package Restaurant;
 import CLI.LoginManager;
 import People.*;
 import utils.DataStorage;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -52,44 +50,25 @@ public class Restaurant {
     }
 
     /**
-     * This method adds the waiter passed in the parameter to the waiters arraylist in the data fields.
-     *  It creates a username string with an empty string and a hash code of the parameter.
+     * This method adds the employee passed in the parameter to the correct arraylist in the data fields.
+     *  It creates a username string using the employee name and a random number of 6 digits.
      *  It also creates a password using the getRandomNum() method.
      *  After creating those two strings it passes them to createAcc() method from the
      *  LoginManager class.
-     * @param waiter
+     * @param employee
+     * @param password
      */
-    public void addWaiter(Waiter waiter, String password) {
-        waiters.add(waiter);
-        String username = "" + waiter.hashCode();
-
-        while (DataStorage.getAllUsernamesAndPasswords().containsKey(username)) {
-            username = "" + getRandomNum();
+    public void addEmployee(Employee employee, String password) {
+        if (employee instanceof Chef) {
+            chefs.add((Chef) employee);
+        } else if (employee instanceof Waiter) {
+            waiters.add((Waiter) employee);
         }
 
-        waiter.setId(username);
-        waiter.setPassword(password);
+        String username = employee.getName() + getRandomNum();
 
-        LoginManager.createAcc(username, waiter);
-    }
-
-    /**
-     * This method adds the chef passed in the parameter to the chefs arraylist in the data fields.
-     *  It creates a username string with an empty string and a hash code of the parameter.
-     *  It also creates a password using the getRandomNum() method.
-     *  After creating those two strings it passes them to createAcc() method from the
-     *  LoginManager class.
-     * @param chef
-     */
-    public void addChef(Chef chef, String paswor) {
-        chefs.add(chef);
-        String username = "" + chef.hashCode();
-
-        while (DataStorage.getAllUsernamesAndPasswords().containsKey(username)) {
-            username = id + "c" + getRandomNum();
-        }
-
-        LoginManager.createAcc(username, chef);
+        employee.setPassword(password);
+        LoginManager.createAcc(username, employee);
     }
 
     /**
@@ -163,10 +142,18 @@ public class Restaurant {
         return id;
     }
 
+    /**
+     * Setter for id data field.
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Setter for menu data field
+     * @param menu
+     */
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
