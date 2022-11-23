@@ -104,6 +104,7 @@ public class Restaurant {
     }
 
     /**
+     * Getter for menu data field.
      * @return menu
      */
     public Menu getMenu() {
@@ -111,6 +112,7 @@ public class Restaurant {
     }
 
     /**
+     * Getter for tables data field.
      * @return tables
      */
     public ArrayList<Table> getTables() {
@@ -118,6 +120,7 @@ public class Restaurant {
     }
 
     /**
+     * Getter for numberOfTables data field.
      * @return numberOfTables
      */
     public int getNumberOfTables() {
@@ -125,6 +128,7 @@ public class Restaurant {
     }
 
     /**
+     * Getter for waiters data field.
      * @return waiters
      */
     public ArrayList<Waiter> getWaiters() {
@@ -132,6 +136,7 @@ public class Restaurant {
     }
 
     /**
+     * Getter for chefs data field.
      * @return chefs
      */
     public ArrayList<Chef> getChefs() {
@@ -139,6 +144,7 @@ public class Restaurant {
     }
 
     /**
+     * Getter for customer data field.
      * @return customers
      */
     public ArrayList<Customer> getCustomers() {
@@ -146,6 +152,7 @@ public class Restaurant {
     }
 
     /**
+     * Getter for id data field.
      * @return id
      */
     public String getId() {

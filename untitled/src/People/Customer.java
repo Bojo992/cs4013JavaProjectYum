@@ -13,7 +13,7 @@ public class Customer extends Person {
         super(name);
     }
 
-    public Customer(String name, String email, String phone) {
+    public Customer(String name, String phone) {
         super(name, phone);
     }
 
