@@ -1,6 +1,7 @@
 package CLI;
 
 import People.Person;
+import Restaurant.Order;
 import Restaurant.Table;
 import utils.DataStorage;
 import utils.UtilsMenu;
@@ -32,7 +33,11 @@ public class ChefMenu extends UtilsMenu {
                 case "C" -> {
                     System.out.println("These are the orders and their state : ");
                     //ToDo need to assign state from order class
-                    chooseFirstType(DataStorage.getAllOrders().toArray());
+                    var order = (Order)chooseFirstType(DataStorage.getAllOrders().toArray());
+                    if (order != null){
+                        System.out.println("Current state of order (in progress, ready): ");
+                        order.setStatus(in.nextLine());
+                    }
                 }
 
 
