@@ -23,6 +23,7 @@ public class MenuCLI {
         try {
             csv.readRestaurants();
             DataStorage.setAllRestaurants(csv.readRestaurants());
+            DataStorage.getAllRestaurants();
         } catch (FileNotFoundException e) {
         }
 

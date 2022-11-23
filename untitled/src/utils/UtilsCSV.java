@@ -68,6 +68,7 @@ public class UtilsCSV {
             restaurant.setId(restaurantId);
 
             line = in.nextLine();
+            line = in.nextLine();
 
             while (!line.equals("waiters")) {
                 String[] lineArray = line.split(", ");
@@ -138,13 +139,13 @@ public class UtilsCSV {
                 while (!line.split(", ")[0].equals("category")) {
                     lineArray = line.split(", ");
                     Food food = new Food(lineArray[0], Double.parseDouble(lineArray[1]));
+                    menu.addFood(food, category);
+
                     if (!in.hasNextLine()) {
                         break;
                     }
 
                     line = in.nextLine();
-
-                    menu.addFood(food, category);
                 }
             }
 
@@ -159,9 +160,12 @@ public class UtilsCSV {
 
     public void writeRestaurants(ArrayList<Restaurant> allRestaurants) {
         File clear = new File("restaurant.csv");
-
-        if (clear.exists()) {
-            clear.delete();
+        try {
+            FileWriter writer = new FileWriter(clear);
+            writer.write("");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         for (Restaurant restaurant: allRestaurants) {
