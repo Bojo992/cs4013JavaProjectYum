@@ -3,34 +3,44 @@ package Restaurant;
 import java.util.ArrayList;
 
 public class Order {
-    //ToDo return total price of food
-    // loop thru the arraylist, total += food.getPrice()
-
     //ToDo add items one by one
-    private int id;
-    private ArrayList<Food>[] food;
-    private ArrayList<Food> tableOrder;
+    private String status;
+    private ArrayList<Food>[] tableFood;
+    private Table table;
 
-    public Order(Table table) {
-        this.tableOrder = new ArrayList<>();
-        this.id = table.getTableNo();
+    public Order(Table table, Food food) {
+        this.table = table;
+        this.tableFood = new ArrayList[table.getNumberOfAllTable() + 1];
+        tableFood[table.getTableNo()].add(food);
     }
 
     public int bill() {
         int total = 0;
 
-        for (int i = 0; i < tableOrder.size(); i++) {
-            total += tableOrder.get(i).getPrice();
+        for (ArrayList<Food> value : tableFood) {
+            //total += value.getPrice();
         }
 
         return total;
     }
 
-    public ArrayList<Food> getTableOrder() {
-        return tableOrder;
+    public void addFood(Food food) {
+
     }
 
-    public void setTableOrder(ArrayList<Food> tableOrder) {
-        this.tableOrder = tableOrder;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Table getTableOrder() {
+        return table;
+    }
+
+    public void setTableOrder(Table tableOrder) {
+        this.table = tableOrder;
     }
 }

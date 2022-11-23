@@ -1,5 +1,7 @@
 package People;
 
+import Restaurant.Order;
+
 /**
  * Chef class which extends Employee class
  * @author italo
@@ -18,7 +20,7 @@ public class Chef extends Employee{
     /**
      * This method allows the chef to change the status of an order to indicate that it is complete.
      */
-    public void changeStatus() {
-
+    public void changeStatus(Order order, String status) {
+        order.setStatus(status);
     }
 }
