@@ -1,5 +1,9 @@
 package CLI;
 
+import People.Customer;
+import utils.DataStorage;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class UserLoginMenu {
@@ -33,13 +37,40 @@ public class UserLoginMenu {
                 }
 
                 case "C" -> {
-                    System.out.print("Create Username : ");
-                    String username = in.nextLine().toUpperCase();
-                    System.out.print("Create Password : ");
-                    String password = in.nextLine().toUpperCase();
+                    System.out.print("    Enter your name: ");
+                    String name = in.nextLine();
+
+                    while (name.isBlank()) {
+                        System.out.println("    Please enter a name: ");
+                        name = in.nextLine();
+                    }
+
+                    System.out.print("    Enter your phone number (Press ENTER to skip): ");
+                    String phoneNumber = in.nextLine();
+
+                    System.out.print("    Enter your password: ");
+                    String password = in.nextLine();
+
+                    Customer customer;
+
+                    if (!phoneNumber.isBlank()) {
+                        customer = new Customer(name, phoneNumber);
+                    }
+
+                    customer = new Customer(name);
+
+                    customer.setId(customer.hashCode() + "");
+
+                    while (DataStorage.getAllUsernamesAndPasswords().containsKey(customer.getId())) {
+                        Random random = new Random();
+                        customer.setId("" + random.nextInt(100000, 999999));
+                    }
+
+                    System.out.println("    Your username: " + customer);
+                    System.out.println("    Your password: " + password);
 
                     login = new LoginManager(type, in);
-                    LoginManager.createAcc(username, password);
+                    LoginManager.createAcc(customer.getId(), customer);
                 }
 
                 case "B" -> quit = false;
