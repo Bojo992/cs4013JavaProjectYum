@@ -34,11 +34,7 @@ public class Restaurant {
         this.chefs = new ArrayList<>();
         this.customers = new ArrayList<>();
         this.numberOfTables = numberOfTables;
-        int id = DataStorage.getAllRestaurants().keySet().size();
-
-        while (DataStorage.getAllRestaurants().containsKey(id + "")) {
-            id++;
-        }
+        int id = DataStorage.getAllRestaurants().size();
 
         this.id = id + "";
     }

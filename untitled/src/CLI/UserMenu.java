@@ -22,7 +22,7 @@ public class UserMenu extends UtilsMenu {
             switch (command) {
                 case "R" -> {
                     System.out.println("Choose from which restaurant you would like to book : ");
-                    var restaurant = (Restaurant) chooseFirstType(DataStorage.getAllRestaurants().values().toArray());
+                    var restaurant = (Restaurant) chooseFirstType(DataStorage.getAllRestaurants().toArray());
 
                     System.out.println("Enter the date of your reservation : ");
                     System.out.print("Date (DD/MM/YYYY) : ");
