@@ -45,7 +45,7 @@ public class Menu {
         return menu.toString();
     }
 
-    private class Category{
+    public class Category{
         String name;
         ArrayList<Food> food;
 

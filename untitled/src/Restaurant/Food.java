@@ -33,4 +33,8 @@ public class Food {
     public String toString() {
         return name + " " + "$" + price;
     }
+
+    public String toCSV() {
+        return name + ", " + price + "\r\n";
+    }
 }

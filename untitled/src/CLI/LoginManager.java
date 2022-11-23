@@ -2,26 +2,28 @@ package CLI;
 
 import java.util.HashMap;
 import java.util.Scanner;
+
+import People.Person;
 import utils.DataStorage;
 
 public class LoginManager {
     private String type;
     private Scanner in;
-    private static HashMap<String, String> loginManager = DataStorage.getAllUsernamesAndPasswords();
+    private static HashMap<String, Person> loginManager = DataStorage.getAllUsernamesAndPasswords();
 
     public LoginManager(String type, Scanner in) {
         this.type = type;
         this.in = in;
     }
 
-    public static void createAcc(String user, String pass) {
-        loginManager.put(user,pass);
+    public static void createAcc(String user, Person person) {
+        loginManager.put(user, person);
     }
 
     public static boolean checkPass(String user, String passedPassword) {
         return !loginManager.isEmpty() &&
                 loginManager.containsKey(user) &&
-                loginManager.get(user).equals(passedPassword);
+                loginManager.get(user).getPassword().equals(passedPassword);
     }
 
     public void run() {

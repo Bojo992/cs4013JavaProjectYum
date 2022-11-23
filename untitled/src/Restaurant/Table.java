@@ -24,8 +24,16 @@ public class Table {
          return tableNo;
      }
 
+    public int getSeats() {
+        return seats;
+    }
+
     public HashMap<String, Boolean> getAvailability() {
         return availability;
+    }
+
+    public void setAvailability(HashMap<String, Boolean> availability) {
+        this.availability = availability;
     }
 
     public void changeAvailability(String date) {
