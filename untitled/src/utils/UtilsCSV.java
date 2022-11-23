@@ -150,7 +150,7 @@ public class UtilsCSV {
 
                 var waiter = new Waiter(lineArray[0], lineArray[1], lineArray[2]);
 
-                restaurant.addWaiter(waiter, lineArray[4]);
+                restaurant.addEmployee(waiter, lineArray[4]);
 
                 waiter.setId(lineArray[3]);
 
@@ -164,7 +164,7 @@ public class UtilsCSV {
 
                 var chef = new Chef(lineArray[0], lineArray[1], lineArray[2]);
 
-                restaurant.addChef(chef, lineArray[4]);
+                restaurant.addEmployee(chef, lineArray[4]);
 
                 chef.setId(lineArray[3]);
 

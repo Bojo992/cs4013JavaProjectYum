@@ -3,7 +3,6 @@ package Restaurant;
 import java.util.ArrayList;
 
 public class Order {
-    //ToDo add items one by one
     private String status;
     private ArrayList<Food>[] tableFood;
     private Table table;
@@ -17,15 +16,17 @@ public class Order {
     public int bill() {
         int total = 0;
 
-        for (ArrayList<Food> value : tableFood) {
-            //total += value.getPrice();
+        for (int i = 0; i < tableFood.length - 1; i++) {
+            total += tableFood[i].get(i).getPrice(); //ToDo test, not sure if it's fully functional
         }
 
         return total;
     }
 
     public void addFood(Food food) {
-
+        for (int i = 0; i < tableFood.length - 1; i++) {
+            tableFood[i].get(i).addFood(food); //ToDo test, not sure if it's fully functional
+        }
     }
 
     public String getStatus() {

@@ -2,7 +2,6 @@ package CLI;
 
 import java.util.HashMap;
 import java.util.Scanner;
-
 import People.Person;
 import utils.DataStorage;
 

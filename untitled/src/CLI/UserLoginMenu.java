@@ -60,7 +60,7 @@ public class UserLoginMenu {
                         customer = new Customer(name);
                     }
 
-                    int randomNumber = (int) (Math.floor(Math.random() * (101)));
+                    int randomNumber = (int) (Math.floor(Math.random() * (1001)));
                     customer.setId(customer.getName() + randomNumber);
                     customer.setPassword(password);
 

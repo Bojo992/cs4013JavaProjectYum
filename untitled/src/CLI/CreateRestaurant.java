@@ -166,7 +166,7 @@ public class CreateRestaurant {
 
                     var chef = new Chef(chefName,chefPhoneNumber, chefTitle);
 
-                    restaurant.addChef(chef, password);
+                    restaurant.addEmployee(chef, password);
                 }
 
                 case "A" -> {
@@ -194,7 +194,7 @@ public class CreateRestaurant {
 
                     var waiter = new Waiter(waiterName, waiterPhoneNumber, "Waiter");
 
-                    restaurant.addWaiter(waiter, password);
+                    restaurant.addEmployee(waiter, password);
                 }
 
                 case "B" -> {
