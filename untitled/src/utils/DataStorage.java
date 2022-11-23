@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataStorage {
-    private static HashMap<String, Restaurant> allRestaurants = new HashMap<>();
+    private static ArrayList<Restaurant> allRestaurants = new ArrayList<>();
     private static HashMap<Restaurant, ArrayList<Table>> allTables = new HashMap<>();
     private static HashMap<Restaurant, ArrayList<Waiter>> allWaiters = new HashMap<>();
     private static HashMap<Restaurant, ArrayList<Chef>> allChefs = new HashMap<>();
@@ -24,7 +24,7 @@ public class DataStorage {
     }
 
     //CSV SETUP AND BACKUP FUNCTIONS
-    public static HashMap<String, Restaurant> getAllRestaurants() {
+    public static ArrayList<Restaurant> getAllRestaurants() {
         return allRestaurants;
     }
 
@@ -70,27 +70,5 @@ public class DataStorage {
 
     public static void setAllMenus(HashMap<Restaurant, ArrayList<Food>> allMenus) {
         DataStorage.allMenus = allMenus;
-    }
-
-
-    //GETTERS FOR SPECIFIC RESTAURANT
-    public static ArrayList<Table> getTablesForRestaurant(String restaurantId) {
-        return allTables.get(allRestaurants.get(restaurantId));
-    }
-
-    public static ArrayList<Chef> getChefsForRestaurant(String restaurantId) {
-        return allChefs.get(allRestaurants.get(restaurantId));
-    }
-
-    public static ArrayList<Waiter> getWaitersForRestaurant(String restaurantId) {
-        return allWaiters.get(allRestaurants.get(restaurantId));
-    }
-
-    public static ArrayList<Food> getMenuForRestaurant(String restaurantId) {
-        return allMenus.get(allRestaurants.get(restaurantId));
-    }
-
-    public static void addRestaurant(Restaurant restaurant) {
-        allRestaurants.put(restaurant.getId(), restaurant);
     }
 }
