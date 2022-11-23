@@ -22,10 +22,10 @@ public class LoginManager {
         loginManager.put(user, person);
     }
 
-    public static boolean checkPass(String user, String passedPassword) {
+    public static boolean checkPass(String username, String passedPassword) {
         return !loginManager.isEmpty() &&
-                loginManager.containsKey(user) &&
-                loginManager.get(user).getPassword().equals(passedPassword);
+                loginManager.containsKey(username) &&
+                loginManager.get(username).getPassword().equals(passedPassword);
     }
 
     public void run() {
@@ -34,5 +34,9 @@ public class LoginManager {
             case "employee" -> new EmployeeMenu(in, user).run();
             case "chef" -> new ChefMenu(in, user).run();
         }
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

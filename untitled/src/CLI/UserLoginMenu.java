@@ -25,11 +25,12 @@ public class UserLoginMenu {
             switch (command) {
                 case "L" -> {
                     System.out.print("Enter Username : ");
-                    String username= in.nextLine().toUpperCase();
+                    String username= in.nextLine();
                     System.out.print("Enter password : ");
-                    String password = in.nextLine().toUpperCase();
+                    String password = in.nextLine();
 
                     if(LoginManager.checkPass(username, password)) {
+                        login.setType(type);
                         login.run();
                     } else {
                         System.out.println("Invalid Username and/or Password");
@@ -55,9 +56,9 @@ public class UserLoginMenu {
 
                     if (!phoneNumber.isBlank()) {
                         customer = new Customer(name, phoneNumber);
+                    } else {
+                        customer = new Customer(name);
                     }
-
-                    customer = new Customer(name);
 
                     customer.setId(customer.hashCode() + "");
                     customer.setPassword(password);
@@ -67,7 +68,7 @@ public class UserLoginMenu {
                         customer.setId("" + random.nextInt(100000, 999999));
                     }
 
-                    System.out.println("    Your username: " + customer);
+                    System.out.println("    Your username: " + customer.getId());
                     System.out.println("    Your password: " + password);
 
                     login = new LoginManager(type, in, customer);
