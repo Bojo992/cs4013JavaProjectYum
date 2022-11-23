@@ -18,6 +18,7 @@ public class Restaurant {
     private ArrayList<Waiter> waiters;
     private ArrayList<Chef> chefs;
     private ArrayList<Customer> customers;
+    private ArrayList<Order> orders;
     private int numberOfTables;
     private String id;
 
@@ -31,6 +32,7 @@ public class Restaurant {
         this.waiters = new ArrayList<>();
         this.chefs = new ArrayList<>();
         this.customers = new ArrayList<>();
+        this.orders = new ArrayList<>();
         this.numberOfTables = numberOfTables;
         int id = DataStorage.getAllRestaurants().size();
 
@@ -71,6 +73,12 @@ public class Restaurant {
         LoginManager.createAcc(username, employee);
     }
 
+    public Person getEmployee(Person person){
+        if (person instanceof Employee){
+            return person;
+        }else return null;
+    }
+
     /**
      * This method adds the table passed in the parameter to the tables arraylist in the data fields.
      *  Before adding it, the method checks if the tables arraylist is less than the number of tables in the restaurant.
@@ -84,6 +92,14 @@ public class Restaurant {
         } else {
             throw new IndexOutOfBoundsException("You have maximum number of tables");
         }
+    }
+
+    public void addOrder(Order order){
+        orders.add(order);
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
     /**

@@ -1,24 +1,39 @@
 package CLI;
 
 import People.Person;
-import Restaurant.Table;
+import People.Waiter;
+import Restaurant.*;
 import utils.DataStorage;
 import utils.UtilsMenu;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EmployeeMenu extends UtilsMenu {
     private Scanner in;
-    private Person user;
+    private Waiter user;
+
+    private Restaurant restaurant;
+
 
     public EmployeeMenu(Scanner in, Person user) {
         this.in = in;
-        this.user = user;
+        this.user = (Waiter) user;
+
+        for (Restaurant restaurant1: DataStorage.getAllRestaurants()) {
+            for (Waiter waiter : restaurant1.getWaiters()) {
+                if (waiter == user) {
+                    this.restaurant = restaurant1;
+                }
+            }
+        }
     }
+
 
     public void run() {
         boolean quitToMain = true;
         while (quitToMain) {
-            System.out.println("W)alk-in, A)dd order, V)iew tables, O)rder List, C)hange order, L)ogout");
+            System.out.println("W)alk-in, A)dd order, V)iew tables, O)rder List, L)ogout");
             String command = in.nextLine().toUpperCase();
 
             switch (command) {
@@ -49,44 +64,29 @@ public class EmployeeMenu extends UtilsMenu {
                 }
 
                 case "A" -> {
-                    System.out.println("Select the Restaurant.Table you want to add order to : ");
+                    System.out.println("Select the Table you want to add order to : ");
+                    boolean quitAddOrder = true;
                     var table = (Table) chooseFirstType(DataStorage.getAllTables().values().toArray());
-
                     System.out.println("Add Order : ");
-                    //var order = (Order) chooseFirstType(DataStorage.getAllOrder().values().toArray());
+                    Order order = new Order(table);
+                    while (quitAddOrder) {
+                        Food food = chooseFoodMenu(restaurant.getMenu());
 
+                        if (food == null) {
+                            break;
+                        }else {
+                            order.addFood(food);
+                        }
+                    }
+
+                    if (order.getTableFood().isEmpty()) {
+                        System.out.println("Order canceled.");
+                        break;
+                    }
+
+                    restaurant.addOrder(order);
                     System.out.println("Order Successfully Added.");
 
-                    /*
-                    System.out.println("Print something with a choice 1) 2) 3) F)");
-                    command = in.nextLine();
-
-                    switch (command) { //ToDo check if works, testing merging cases
-                        case "1", "2", "3" -> { //ToDo need table numbers
-                            System.out.println("A)dd meal, C)hange meal, F)inish ");
-                            switch (command) {
-                                case "A" -> {
-                                    System.out.println("What items would you like to add? : ");
-                                }
-                                case "C" -> {
-                                    System.out.println("Previous meal : ");
-                                    System.out.println("New meal : ");
-                                }
-                                case "F" -> {
-                                    quitFromAddOrder = false;
-                                }
-                            }
-
-                            //This shouldn't be here
-                            //it would need another switch, requesting input A)dd meal, C)hange meal, F)inish
-                        }
-
-                        //ToDo need menu ArrayList
-
-                        case "F" -> {
-                            quitFromAddOrder = false;
-                        }
-                    } */
                 }
 
                 case "V" -> {
@@ -96,14 +96,7 @@ public class EmployeeMenu extends UtilsMenu {
 
                 case "O" -> {
                     System.out.println("Here is a list of all the current orders : ");
-                    //showFirstType(DataStorage.getAllOrders().values().toArray());
-                    //ToDo make sure that list updates depending on order status.
-                }
-
-                case "C" -> {
-                    System.out.println("Which order would you like to change? : ");
-                    //var order = (Order) chooseFirstType(DataStorage.getAllOrders().values().toArray());
-                    //ToDo Display all orders based on table selection??? or based on just order number?
+                    showFirstType(restaurant.getOrders().toArray());
                 }
 
                 case "L" -> {
@@ -111,5 +104,56 @@ public class EmployeeMenu extends UtilsMenu {
                 }
             }
         }
+    }
+
+    private Food chooseFoodMenu(Menu menu){
+        System.out.println("Choose category:");
+        System.out.println(" 0) Cancel");
+        int i = 1;
+        for (Menu.Category c: menu.getCategories()) {
+            i++;
+            System.out.printf(" %d) %s", i, c.getName());
+            System.out.println();
+        }
+        System.out.print("Please pick your category: ");
+        String line = in.nextLine();
+
+        while (true){
+            try{
+                i = Integer.parseInt(line);
+                if (i>0 && i<=menu.getCategories().size() ) {
+                    break;
+                }
+                System.out.print("Please pick from above: ");
+                line = in.nextLine();
+
+            } catch (Exception e) {
+                System.out.print("Please pick from above: ");
+                line = in.nextLine();
+            }
+        }
+        int j = 1;
+        ArrayList<Food> foods = menu.getCategories().get(i).getFood();
+        for (Food food : foods) {
+            System.out.printf(" %d) %s", j++, food.toString());
+            System.out.println();
+        }
+        System.out.print("Please pick your meal: ");
+        line = in.nextLine();
+        while (true){
+            try{
+                i = Integer.parseInt(line);
+                if (i>0 && i<=foods.size() ) {
+                    break;
+                }
+                System.out.print("Please pick from above: ");
+                line = in.nextLine();
+            } catch (Exception e) {
+                System.out.print("Please pick from above: ");
+                line = in.nextLine();
+            }
+        }
+
+        return foods.get(i);
     }
 }

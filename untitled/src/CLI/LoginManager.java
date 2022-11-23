@@ -3,6 +3,7 @@ package CLI;
 import java.util.HashMap;
 import java.util.Scanner;
 import People.Person;
+import Restaurant.Restaurant;
 import utils.DataStorage;
 
 public class LoginManager {

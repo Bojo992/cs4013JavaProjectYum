@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Order {
     private String status;
-    private ArrayList<Food>[] tableFood;
+    private ArrayList<Food> tableFood;
     private Table table;
 
-    public Order(Table table, Food food) {
+    public Order(Table table) {
         this.table = table;
-        this.tableFood = new ArrayList[table.getNumberOfAllTable() + 1];
-        tableFood[table.getTableNo()].add(food);
+        this.tableFood = new ArrayList<Food>();
     }
 
     public int bill() {
@@ -24,9 +23,11 @@ public class Order {
     }
 
     public void addFood(Food food) {
-        for (int i = 0; i < tableFood.length - 1; i++) {
-            tableFood[i].get(i).addFood(food); //ToDo test, not sure if it's fully functional
-        }
+        tableFood.add(food);
+    }
+
+    public ArrayList<Food> getTableFood() {
+        return tableFood;
     }
 
     public String getStatus() {
