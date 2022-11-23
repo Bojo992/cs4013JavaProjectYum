@@ -21,18 +21,6 @@ public class Customer extends Person {
 
     }
 
-    public void makeReservation(LocalDate date, Table table, int noOfCustomer){
-        this.date = date;
-        this.table = table;
-        this.noOfCustomer = noOfCustomer;
-
-    }
-
-    public void changeReservation(LocalDate date, Table table){
-        this.date = date;
-        this.table = table;
-    }
-
     /*------------------
        Getters/Setters
       ------------------*/

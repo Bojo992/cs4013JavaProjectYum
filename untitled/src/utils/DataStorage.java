@@ -14,6 +14,7 @@ public class DataStorage {
     private static ArrayList<Customer> allCustomers = new ArrayList<>();
     private static HashMap<Restaurant, ArrayList<Food>> allMenus = new HashMap<>();
     private static HashMap<String, Person> allUsernamesAndPasswords = new HashMap<>();
+    private static ArrayList<Order> allOrders = new ArrayList<>();
 
     public static HashMap<String, Person> getAllUsernamesAndPasswords() {
         return allUsernamesAndPasswords;
@@ -70,5 +71,17 @@ public class DataStorage {
 
     public static void setAllMenus(HashMap<Restaurant, ArrayList<Food>> allMenus) {
         DataStorage.allMenus = allMenus;
+    }
+
+    public static ArrayList<Order> getAllOrders() {
+        return allOrders;
+    }
+
+    public static void setAllOrders(ArrayList<Order> allOrders) {
+        DataStorage.allOrders = allOrders;
+    }
+
+    public static void addRestaurant(Restaurant restaurant) {
+        allRestaurants.add(restaurant);
     }
 }

@@ -117,7 +117,6 @@ public class UtilsCSV {
             restaurant.setId(restaurantId);
 
             line = in.nextLine();
-            line = in.nextLine();
 
             while (!line.equals("waiters")) {
                 String[] lineArray = line.split(", ");
