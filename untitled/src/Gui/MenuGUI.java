@@ -72,17 +72,17 @@ public class MenuGUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonEmployee) {
             frame.dispose();
-            LoginPage loginPage = new LoginPage();
+            EmployeeMenuGUI employeeMenuGUI = new EmployeeMenuGUI();
         }
 
         if (e.getSource() == buttonUser) {
             frame.dispose();
-            LoginPage loginPage = new LoginPage();
+            UserGUI userGUI = new UserGUI();
         }
 
         if (e.getSource() == buttonChef) {
             frame.dispose();
-            LoginPage loginPage = new LoginPage();
+            ChefMenuGUI chefMenuGUI = new ChefMenuGUI();
         }
 
         if(e.getSource() == leave) {
