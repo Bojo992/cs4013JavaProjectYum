@@ -1,5 +1,6 @@
 package CLI;
 
+import People.Employee;
 import People.Person;
 import People.Waiter;
 import Restaurant.*;
@@ -11,12 +12,12 @@ import java.util.Scanner;
 
 public class EmployeeMenu extends UtilsMenu {
     private Scanner in;
-    private Person user;
+    private Waiter user;
 
     private Restaurant restaurant;
 
 
-    public EmployeeMenu(Scanner in, Person user) {
+    public EmployeeMenu(Scanner in, Waiter user) {
         this.in = in;
         this.user = user;
 
