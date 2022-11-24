@@ -12,11 +12,11 @@ public class Order {
         this.tableFood = new ArrayList<Food>();
     }
 
-    public int bill() {
-        int total = 0;
+    public double bill() {
+        double total = 0;
 
-        for (int i = 0; i < tableFood.size(); i++) {
-            total += tableFood.get(i).getPrice(); //ToDo test, not sure if it's fully functional
+        for (Food food : tableFood) {
+            total += food.getPrice(); //ToDo test, not sure if it's fully functional
         }
 
         return total;
