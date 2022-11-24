@@ -74,20 +74,9 @@ public class UtilsCSV {
             while (!line.equals("waiters")) {
                 String[] lineArray = line.split(", ");
                 String tableSignature = lineArray[0] + ", " + lineArray[1];
-
-                HashMap<String, Boolean> reservations = new HashMap<>();
-
-                while (line.contains(tableSignature)) {
-                    lineArray = line.split(", ");
-
-                    reservations.put(lineArray[2], (lineArray[3].equals("true") ? true : false));
-
-                    line = in.nextLine();
-                }
+                line = in.nextLine();
 
                 Table temp = new Table(Integer.parseInt(lineArray[0]), Integer.parseInt(lineArray[1]));
-
-                temp.setAvailability(reservations);
 
                 restaurant.addTable(temp);
             }
@@ -193,13 +182,11 @@ public class UtilsCSV {
             return null;
         }
 
-        boolean skip = true;
-
         Scanner in = new Scanner(customerCSV);
         String line = "";
+        line = in.nextLine();
 
         while (in.hasNextLine()){
-            line = in.nextLine();
             String[] lineArray = line.split(", ");
             String customerSignature = lineArray[0] + ", " +
                     lineArray[1] + ", " +
@@ -217,20 +204,47 @@ public class UtilsCSV {
             customer.setId(lineArray[2]);
             customer.setPassword(lineArray[3]);
 
-            while (line.contains(customerSignature) && !lineArray[4].equals("null")) {
-                Restaurant restaurant = DataStorage.getAllRestaurants().get(Integer.parseInt(lineArray[6]));
+            customers.add(customer);
 
-                Reservation reservation = new Reservation(customer,
-                        lineArray[4],
-                        restaurant.getTables().get(Integer.parseInt(lineArray[5])),
-                        restaurant,
-                        Integer.parseInt(lineArray[7]));
+            while (line.contains(customerSignature)) {
+                if (!lineArray[4].equals("null")) {
+                    Restaurant restaurant = DataStorage.getAllRestaurants().get(Integer.parseInt(lineArray[6]));
 
-                customer.addReservation(reservation);
+                    Reservation reservation = new Reservation(customer,
+                            lineArray[4],
+                            restaurant.getTables().get(Integer.parseInt(lineArray[5])),
+                            restaurant,
+                            Integer.parseInt(lineArray[7]));
+
+                    customer.addReservation(reservation);
+                }
                 line = in.nextLine();
+                lineArray = line.split(", ");
             }
 
-            customers.add(customer);
+            if (!in.hasNextLine()) {
+                if (lineArray[1].equals("null")) {
+                    customer = new Customer(lineArray[0]);
+                } else {
+                    customer = new Customer(lineArray[0], lineArray[1]);
+                }
+
+                customer.setId(lineArray[2]);
+                customer.setPassword(lineArray[3]);
+                customers.add(customer);
+
+                if (!lineArray[4].equals("null")) {
+                    Restaurant restaurant = DataStorage.getAllRestaurants().get(Integer.parseInt(lineArray[6]));
+
+                    Reservation reservation = new Reservation(customer,
+                            lineArray[4],
+                            restaurant.getTables().get(Integer.parseInt(lineArray[5])),
+                            restaurant,
+                            Integer.parseInt(lineArray[7]));
+
+                    customer.addReservation(reservation);
+                }
+            }
         }
 
         return customers;
@@ -292,13 +306,7 @@ public class UtilsCSV {
         for (Table table : restaurant.getTables()) {
             String tableCSV = table.getTableNo() + ", " + table.getSeats() + ", ";
 
-            if (table.getAvailability().isEmpty()) {
-                restaurantString.append(tableCSV + "null, null\r\n");
-            }
-
-            for (String date : table.getAvailability().keySet()) {
-                restaurantString.append(tableCSV + date + ", " + table.getAvailability().get(date) + "\r\n");
-            }
+            restaurantString.append(tableCSV + "\r\n");
         }
 
         restaurantString.append("waiters\r\n");

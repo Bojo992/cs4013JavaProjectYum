@@ -29,10 +29,11 @@ public class testCustomerCSV {
 
         UtilsCSV csv = new UtilsCSV();
 
-//        restaurants = csv.readRestaurants();
-//        DataStorage.setAllRestaurants(restaurants);
-//        customers = csv.readCustomers();
-//
+        restaurants = csv.readRestaurants();
+        DataStorage.setAllRestaurants(restaurants);
+        customers = csv.readCustomers();
+        DataStorage.setAllCustomers(customers);
+
 //        var reservation = new Reservation(customers.get(0),
 //                "24/11/2022",
 //                restaurants.get(0).getTables().get(0),
@@ -42,6 +43,49 @@ public class testCustomerCSV {
 //        customers.get(0).addReservation(reservation);
 
         csv.wrightCustomers(customers);
-//        csv.writeRestaurants(restaurants);
+        csv.writeRestaurants(restaurants);
     }
 }
+//Boris, null, angry, monkey, null
+//Szymon, legend, void, 0-0, null
+//Italo, worker, void, 22, null
+//Craig, writer, void, 44, null
+
+//restaurant, 0, 2
+//tables,
+//0, 1, 24/11/2022, true
+//0, 1, null, false
+//1, 2, null, false
+//waiters
+//test, teset, Waiter, 1702297201, test
+//chef
+//test, test, test, null, null
+//orders
+//started, 0, lol, 6.0
+//started, 0, test, 9.0
+//menu
+//category, test
+//test, 9.0
+//test 1, 8.0
+//category, qwer
+//lol, 6.0
+//restaurant, 1, 5
+//tables,
+//0, 5, null, false
+//1, 5, null, false
+//2, 5, null, false
+//3, 3, null, false
+//4, 2, null, false
+//waiters
+//test, test, Waiter, null, test
+//chef
+//test, test, test, null, test
+//test, test, test, null, test
+//orders
+//menu
+//category, test
+//test, 9.0
+//xc, 8.0
+//chicken, 4.9
+//category, lunch
+//sandwich, 3.0

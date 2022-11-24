@@ -1,7 +1,7 @@
 restaurant, 0, 2
 tables, 
-0, 1, null, false
-1, 2, null, false
+0, 1, 
+1, 2, 
 waiters
 test, teset, Waiter, 1702297201, test
 chef
@@ -17,11 +17,11 @@ category, qwer
 lol, 6.0
 restaurant, 1, 5
 tables, 
-0, 5, null, false
-1, 5, null, false
-2, 5, null, false
-3, 3, null, false
-4, 2, null, false
+0, 5, 
+1, 5, 
+2, 5, 
+3, 3, 
+4, 2, 
 waiters
 test, test, Waiter, null, test
 chef

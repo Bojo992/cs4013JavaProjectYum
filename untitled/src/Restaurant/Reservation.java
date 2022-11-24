@@ -21,6 +21,8 @@ public class Reservation {
         this.table = table;
         this.restaurant = restaurant;
         this.noOfCustomer = noOfCustomer;
+
+        this.table.changeAvailability(date);
     }
 
     public String resToCSV(File file) throws IOException {//Todo move to UtilsCSV
