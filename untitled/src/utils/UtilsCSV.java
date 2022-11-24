@@ -16,7 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The Utils csv class
+ */
 public class UtilsCSV {
+    /**
+     * Read food from csv list.
+     * @param filename the filename
+     * @return the list
+     */
     public List<Food> readFoodFromCSV(String filename){
         List<Food> foods = new ArrayList<>();
         try{
@@ -44,6 +52,11 @@ public class UtilsCSV {
         return new Food(name,price);
     }
 
+    /**
+     * Read restaurants array list.
+     * @return the array list
+     * @throws FileNotFoundException the file not found exception
+     */
     public ArrayList<Restaurant> readRestaurants() throws FileNotFoundException {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
 
@@ -175,6 +188,11 @@ public class UtilsCSV {
         return restaurants;
     }
 
+    /**
+     * Read customers array list.
+     * @return the array list
+     * @throws FileNotFoundException the file not found exception
+     */
     public ArrayList<Customer> readCustomers() throws FileNotFoundException {
         ArrayList<Customer> customers = new ArrayList<>();
 
@@ -256,6 +274,11 @@ public class UtilsCSV {
 
         return customers;
     }
+
+    /**
+     * Wright customers.
+     * @param allCustomers the all customers
+     */
     public void wrightCustomers(ArrayList<Customer> allCustomers) {
         File clear = new File("customers.csv");
         try {
@@ -275,6 +298,10 @@ public class UtilsCSV {
         }
     }
 
+    /**
+     * Write restaurants.
+     * @param allRestaurants the all restaurants
+     */
     public void writeRestaurants(ArrayList<Restaurant> allRestaurants) {
         File clear = new File("restaurant.csv");
         try {
