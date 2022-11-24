@@ -5,12 +5,14 @@
 
 package Gui;
 
+import People.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuGUI implements ActionListener {
+    private Person user;
     JFrame frame = new JFrame();
     JButton buttonEmployee = new JButton("Employee");
     JButton buttonUser = new JButton("User");
@@ -72,17 +74,20 @@ public class MenuGUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonEmployee) {
             frame.dispose();
-            EmployeeMenuGUI employeeMenuGUI = new EmployeeMenuGUI();
+            this.user = new Waiter("", "waiter");
+            LoginPage loginPage = new LoginPage(this.user, "employee");
         }
 
         if (e.getSource() == buttonUser) {
             frame.dispose();
-            UserGUI userGUI = new UserGUI();
+            this.user = new Customer("");
+            LoginPage loginPage = new LoginPage(this.user, "customer");
         }
 
         if (e.getSource() == buttonChef) {
             frame.dispose();
-            ChefMenuGUI chefMenuGUI = new ChefMenuGUI();
+            this.user = new Chef("", "chef");
+            LoginPage loginPage = new LoginPage(this.user, "chef");
         }
 
         if(e.getSource() == leave) {

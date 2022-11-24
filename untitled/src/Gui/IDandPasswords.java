@@ -1,19 +1,22 @@
 package Gui;
 
+import People.Person;
+import utils.DataStorage;
+
 import java.util.HashMap;
 
 public class IDandPasswords {
-    HashMap<String,String> loginInfo = new HashMap<String,String>();
+    private Person user;
+    private String type;
+    private static HashMap<String, Person> loginInfo = DataStorage.getAllUsernamesAndPasswords();
 
-    IDandPasswords() {
-        loginInfo.put("boris", "password");
-        loginInfo.put("italo", "password");
-        loginInfo.put("craig", "password");
-        loginInfo.put("simon", "password");
+    public IDandPasswords(Person user, String type) {
+        this.user = user;
+        this.type = type;
     }
 
-    protected HashMap getLoginInfo () {
-        return loginInfo;
+    public static void createAcc(String user, Person person) {
+        loginInfo.put(user, person);
     }
 }
 

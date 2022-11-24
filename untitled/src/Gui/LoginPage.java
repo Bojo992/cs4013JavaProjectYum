@@ -1,12 +1,18 @@
 package Gui;
 
+import utils.DataStorage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import People.*;
 
 public class LoginPage implements ActionListener {
+    private IDandPasswords login;
+    private Person user;
+    private String type;
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
@@ -18,11 +24,11 @@ public class LoginPage implements ActionListener {
     JLabel userPasswordLabel = new JLabel("password: ");
     JLabel messageLabel = new JLabel();
     JLabel caseSensitive = new JLabel("UserID & password are case sensitive!");
-    HashMap<String, String> loginInfo = new HashMap<String, String>();
+    HashMap<String, Person> loginInfo = DataStorage.getAllUsernamesAndPasswords();
 
-    LoginPage(HashMap<String, String> loginInformation) {
-        loginInfo = loginInformation;
-
+    LoginPage(Person user, String type) {
+        this.user = user;
+        this.type = type;
         userIDLabel.setBounds(50, 100, 75, 25);
         userPasswordLabel.setBounds(50, 150, 75, 25);
 
@@ -74,19 +80,75 @@ public class LoginPage implements ActionListener {
             String userID = userIDField.getText();
             String password = String.valueOf(userPasswordField.getPassword());
 
-            if (loginInfo.containsKey(userID)) {
-                if (loginInfo.get(userID).equals(password)) {
-                    messageLabel.setForeground(Color.green);
-                    messageLabel.setText("Login successful");
-                    frame.dispose();
-                    //Here we need to implement LoginHandler
+            if(type.equals("employee")) {
+                this.user.setName(userID);
+                this.user.setPassword(password);
+                login = new IDandPasswords(this.user, password);
+                login.createAcc(userID, this.user);
+
+                if (loginInfo.containsKey(userID)) {
+                    if (loginInfo.get(userID).getPassword().equals(password)) {
+                        messageLabel.setForeground(Color.green);
+                        messageLabel.setText("Login successful");
+                        EmployeeMenuGUI employeeMenuGUI = new EmployeeMenuGUI();
+                        frame.dispose();
+                        //Here we need to implement LoginHandler
+                    } else {
+                        messageLabel.setForeground(Color.red);
+                        messageLabel.setText("Incorrect Password");
+                    }
                 } else {
                     messageLabel.setForeground(Color.red);
-                    messageLabel.setText("Incorrect Password");
+                    messageLabel.setText("UserID Not Found");
                 }
-            } else {
-                messageLabel.setForeground(Color.red);
-                messageLabel.setText("UserID Not Found");
+            }
+
+            if(type.equals("customer")) {
+                this.user.setName(userID);
+                this.user.setPassword(password);
+                login = new IDandPasswords(this.user, password);
+                login.createAcc(userID, this.user);
+
+
+                if (loginInfo.containsKey(userID)) {
+                    if (loginInfo.get(userID).getPassword().equals(password)) {
+                        messageLabel.setForeground(Color.green);
+                        messageLabel.setText("Login successful");
+                        UserGUI employeeMenuGUI = new UserGUI();
+                        frame.dispose();
+                        //Here we need to implement LoginHandler
+                    } else {
+                        messageLabel.setForeground(Color.red);
+                        messageLabel.setText("Incorrect Password");
+                    }
+                } else {
+                    messageLabel.setForeground(Color.red);
+                    messageLabel.setText("UserID Not Found");
+                }
+            }
+
+            if(type.equals("chef")) {
+                this.user.setName(userID);
+                this.user.setPassword(password);
+                login = new IDandPasswords(this.user, password);
+                login.createAcc(userID, this.user);
+
+
+                if (loginInfo.containsKey(userID)) {
+                    if (loginInfo.get(userID).getPassword().equals(password)) {
+                        messageLabel.setForeground(Color.green);
+                        messageLabel.setText("Login successful");
+                        ChefMenuGUI employeeMenuGUI = new ChefMenuGUI();
+                        frame.dispose();
+                        //Here we need to implement LoginHandler
+                    } else {
+                        messageLabel.setForeground(Color.red);
+                        messageLabel.setText("Incorrect Password");
+                    }
+                } else {
+                    messageLabel.setForeground(Color.red);
+                    messageLabel.setText("UserID Not Found");
+                }
             }
         }
 

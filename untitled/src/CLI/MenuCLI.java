@@ -51,11 +51,11 @@ public class MenuCLI {
         }
 
         while (true) {
-            System.out.print("Do you want to add the a restaurant? Y)es or N)ot: ");
+            System.out.print("Do you want to add the a restaurant? Y)es or N)o: ");
             String input = in.nextLine().toUpperCase();
 
             while (!input.equals("Y") && !input.equals("N")) {
-                System.out.print("Please enter Y)es or N)ot: ");
+                System.out.print("Please enter Y)es or N)o: ");
                 input = in.nextLine().toUpperCase();
             }
 
