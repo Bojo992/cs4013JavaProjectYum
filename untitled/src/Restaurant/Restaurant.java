@@ -11,7 +11,6 @@ import java.util.Random;
  * This class implements the Restaurant and
  * its data fields and methods
  *
- * @author italo
  */
 public class Restaurant {
     private Menu menu;
@@ -80,12 +79,6 @@ public class Restaurant {
         LoginManager.createAcc(username, employee);
     }
 
-    public Person getEmployee(Person person){
-        if (person instanceof Employee){
-            return person;
-        }else return null;
-    }
-
     /**
      * This method adds the table passed in the parameter to the tables arraylist in the data fields.
      *  Before adding it, the method checks if the tables arraylist is less than the number of tables in the restaurant.
@@ -101,10 +94,20 @@ public class Restaurant {
         }
     }
 
+    /**
+     * Add order.
+     *
+     * @param order the order
+     */
     public void addOrder(Order order){
         orders.add(order);
     }
 
+    /**
+     * Gets orders.
+     *
+     * @return the orders
+     */
     public ArrayList<Order> getOrders() {
         return orders;
     }
@@ -127,7 +130,7 @@ public class Restaurant {
 
     /**
      * Getter for numberOfTables data field.
-     * @return numberOfTables
+     * @return number of tables
      */
     public int getNumberOfTables() {
         return numberOfTables;
@@ -167,7 +170,7 @@ public class Restaurant {
 
     /**
      * Setter for id data field.
-     * @param id
+     * @param id the id
      */
     public void setId(String id) {
         this.id = id;
@@ -175,16 +178,25 @@ public class Restaurant {
 
     /**
      * Setter for menu data field
-     * @param menu
+     * @param menu the menu
      */
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
 
+    /**
+     * Add menu.
+     * @param menu the menu
+     */
     public void addMenu(Menu menu) {
         this.menu = menu;
     }
 
+    /**
+     * Gets tables for the day.
+     * @param date the date
+     * @return the tables for the day
+     */
     public ArrayList<Table> getTablesForTheDay(String date) {
         ArrayList<Table> t = new ArrayList<>();
 
