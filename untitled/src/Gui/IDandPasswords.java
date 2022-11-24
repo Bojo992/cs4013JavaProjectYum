@@ -18,13 +18,5 @@ public class IDandPasswords {
     public static void createAcc(String user, Person person) {
         loginInfo.put(user, person);
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    protected HashMap getLoginInfo () {
-        return loginInfo;
-    }
 }
 
