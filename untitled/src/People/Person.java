@@ -27,18 +27,34 @@ public class Person {
         this.phone = phone;
     }
 
+    /**
+     * Getter for a Person id
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * setter for a Persons id
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * getter a Persons password
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * setter for a Persons password
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
