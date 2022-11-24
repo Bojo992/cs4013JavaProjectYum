@@ -193,7 +193,7 @@ public class UtilsCSV {
 
         line = in.nextLine();
 
-        while (in.hasNextLine()){
+        do {
             String[] lineArray = line.split(", ");
             String customerSignature = lineArray[0] + ", " +
                     lineArray[1] + ", " +
@@ -213,7 +213,7 @@ public class UtilsCSV {
 
             customers.add(customer);
 
-            while (line.contains(customerSignature)) {
+            while (line.contains(customerSignature) && in.hasNextLine()) {
                 if (!lineArray[4].equals("null")) {
                     Restaurant restaurant = DataStorage.getAllRestaurants().get(Integer.parseInt(lineArray[6]));
 
@@ -252,7 +252,7 @@ public class UtilsCSV {
                     customer.addReservation(reservation);
                 }
             }
-        }
+        } while (in.hasNextLine());
 
         return customers;
     }

@@ -4,6 +4,7 @@ import CLI.LoginManager;
 import People.*;
 import utils.DataStorage;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
 /**
@@ -182,5 +183,17 @@ public class Restaurant {
 
     public void addMenu(Menu menu) {
         this.menu = menu;
+    }
+
+    public ArrayList<Table> getTablesForTheDay(String date) {
+        ArrayList<Table> t = new ArrayList<>();
+
+        for (Table i: tables) {
+            if (!i.getAvailability().containsKey(date)) {
+                t.add(i);
+            }
+        }
+
+        return t;
     }
 }

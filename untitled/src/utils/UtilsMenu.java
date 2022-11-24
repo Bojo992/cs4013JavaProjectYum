@@ -3,7 +3,7 @@ package utils;
 import java.util.Scanner;
 
 public abstract class UtilsMenu {
-    private Scanner in;
+    private Scanner in = new Scanner(System.in);
 
     public abstract void run();
 
@@ -26,11 +26,12 @@ public abstract class UtilsMenu {
                 int j = -1;
 
                 while (true) {
+                    String line = in.nextLine();
                     try{
-                        j = Integer.parseInt(in.nextLine());
+                        j = Integer.parseInt(line);
                         break;
                     }catch (Exception ex){
-                        System.out.println("Please pick from above1");
+                        System.out.println("Please pick from above: ");
                     }
                 }
                 if (j == 0){

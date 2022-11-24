@@ -1,5 +1,9 @@
 package CLI;
 
+import People.Chef;
+import People.Customer;
+import People.Waiter;
+import Restaurant.Restaurant;
 import utils.DataStorage;
 import utils.UtilsCSV;
 
@@ -24,11 +28,23 @@ public class MenuCLI {
             var rest = csv.readRestaurants();
             if (rest != null) {
                 DataStorage.setAllRestaurants(rest);
+
+                for (Restaurant c: DataStorage.getAllRestaurants()) {
+                    for (Chef l: c.getChefs()) {
+                        LoginManager.createAcc(l.getId(), l);
+                    }
+                    for (Waiter l: c.getWaiters()) {
+                        LoginManager.createAcc(l.getId(), l);
+                    }
+                }
             }
 
             var cust = csv.readCustomers();
             if (cust != null) {
                 DataStorage.setAllCustomers(cust);
+                for (Customer c: cust) {
+                    LoginManager.createAcc(c.getId(), c);
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Create restaurants.csv and customer.csv");

@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class EmployeeMenu extends UtilsMenu {
     private Scanner in;
     private Waiter user;
+    private String date;
 
     private Restaurant restaurant;
 
@@ -20,6 +21,14 @@ public class EmployeeMenu extends UtilsMenu {
     public EmployeeMenu(Scanner in, Waiter user) {
         this.in = in;
         this.user = user;
+
+        System.out.print("Enter date: ");
+        date = in.nextLine();
+
+        while (date.isBlank()) {
+            System.out.print("Enter date: ");
+            date = in.nextLine();
+        }
 
         for (Restaurant restaurant1: DataStorage.getAllRestaurants()) {
             for (Waiter waiter : restaurant1.getWaiters()) {
@@ -47,14 +56,13 @@ public class EmployeeMenu extends UtilsMenu {
                         switch (command) {
                             case "C" -> {
                                 System.out.println("These tables are available for walk-ins : ");
-                                show(DataStorage.getAllTables().values().toArray());
-                                //ToDo display tables that are available (this can be an option just to view for employer
-                                // info)
+                                show(restaurant.getTablesForTheDay(date).toArray());
+                                System.out.println();
                             }
 
                             case "R" -> {
                                 System.out.println("Select a table for walk-in customer : ");
-                                var table = (Table) pick(DataStorage.getAllTables().values().toArray());
+                                var table = (Table) pick(restaurant.getTablesForTheDay(date).toArray());
                             }
 
                             case "G" -> {
@@ -67,7 +75,7 @@ public class EmployeeMenu extends UtilsMenu {
                 case "A" -> {
                     System.out.println("Select the Table you want to add order to : ");
                     boolean quitAddOrder = true;
-                    var table = (Table) pick(DataStorage.getAllTables().values().toArray());
+                    var table = (Table) pick(restaurant.getTables().toArray());
                     System.out.println("Add Order : ");
                     Order order = new Order(table);
                     while (quitAddOrder) {
@@ -92,7 +100,7 @@ public class EmployeeMenu extends UtilsMenu {
 
                 case "V" -> {
                     System.out.println("Here are all the tables in the restaurant : ");
-                    show(DataStorage.getAllTables().values().toArray());
+                    show(restaurant.getTables().toArray());
                 }
 
                 case "O" -> {
@@ -110,7 +118,7 @@ public class EmployeeMenu extends UtilsMenu {
     private Food chooseFoodMenu(Menu menu){
         System.out.println("Choose category:");
         System.out.println(" 0) Cancel");
-        int i = 1;
+        int i = 0;
         for (Menu.Category c: menu.getCategories()) {
             i++;
             System.out.printf(" %d) %s", i, c.getName());
@@ -122,7 +130,7 @@ public class EmployeeMenu extends UtilsMenu {
         while (true){
             try{
                 i = Integer.parseInt(line);
-                if (i>0 && i<=menu.getCategories().size() ) {
+                if (i>=0 && i<=menu.getCategories().size() ) {
                     break;
                 }
                 System.out.print("Please pick from above: ");
@@ -133,15 +141,21 @@ public class EmployeeMenu extends UtilsMenu {
                 line = in.nextLine();
             }
         }
+
+        if (i == 0) {
+            return null;
+        }
+
         int j = 1;
-        ArrayList<Food> foods = menu.getCategories().get(i).getFood();
+        ArrayList<Food> foods = menu.getCategories().get(i - 1).getFood();
         for (Food food : foods) {
             System.out.printf(" %d) %s", j++, food.toString());
             System.out.println();
         }
         System.out.print("Please pick your meal: ");
         line = in.nextLine();
-        while (true){
+
+        while (true) {
             try{
                 i = Integer.parseInt(line);
                 if (i>0 && i<=foods.size() ) {
@@ -155,6 +169,6 @@ public class EmployeeMenu extends UtilsMenu {
             }
         }
 
-        return foods.get(i);
+        return foods.get(i - 1);
     }
 }

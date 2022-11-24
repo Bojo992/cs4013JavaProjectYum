@@ -13,6 +13,7 @@ public class UserLoginMenu {
     public UserLoginMenu(Scanner in, String type) {
         this.in = in;
         this.type = type;
+        login = new LoginManager(type, in, null);
     }
     
     private int randomNumber() {

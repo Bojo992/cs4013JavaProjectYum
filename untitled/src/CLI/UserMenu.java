@@ -31,7 +31,7 @@ public class UserMenu extends UtilsMenu {
                     String chosenDate = in.nextLine();
 
                     System.out.println("Choose which table you would like to reserve : ");
-                    var table = (Table) pick(DataStorage.getAllTables().values().toArray());
+                    var table = (Table) pick(restaurant.getTables().toArray());
 
                     System.out.print("Enter number of people attending: ");
                     int numberOfPeople = -1;

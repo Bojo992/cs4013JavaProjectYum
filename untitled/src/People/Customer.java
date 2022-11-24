@@ -25,6 +25,7 @@ public class Customer extends Person {
 
     public void removeReservation(Reservation reservation) {
         reservations.remove(reservation);
+        reservation.getTable().removeReservation(reservation.getDate());
     }
 
     /*------------------
