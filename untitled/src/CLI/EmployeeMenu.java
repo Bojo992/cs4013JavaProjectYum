@@ -11,14 +11,14 @@ import java.util.Scanner;
 
 public class EmployeeMenu extends UtilsMenu {
     private Scanner in;
-    private Waiter user;
+    private Person user;
 
     private Restaurant restaurant;
 
 
     public EmployeeMenu(Scanner in, Person user) {
         this.in = in;
-        this.user = (Waiter) user;
+        this.user = user;
 
         for (Restaurant restaurant1: DataStorage.getAllRestaurants()) {
             for (Waiter waiter : restaurant1.getWaiters()) {
