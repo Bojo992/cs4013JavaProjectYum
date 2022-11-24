@@ -2,10 +2,14 @@ package People;
 
 /**
  * Employee class which extends Person class
- * @author italo
  */
 public class Employee extends Person{
     private String title; //distinguish from chef and waiter
+
+    public Employee(String name, String title) {
+        super(name);
+        this.title = title;
+    }
 
     /**
      * Constructor with specific name, phone and title

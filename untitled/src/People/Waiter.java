@@ -1,6 +1,9 @@
 package People;
 
 public class Waiter extends Employee{
+    public Waiter(String name, String title) {
+        super(name, title);
+    }
     public Waiter(String name,String phone, String title) {
         super(name,phone, title);
     }

@@ -1,8 +1,7 @@
 package CLI;
 
-import People.Customer;
+import People.*;
 import utils.DataStorage;
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +13,10 @@ public class UserLoginMenu {
     public UserLoginMenu(Scanner in, String type) {
         this.in = in;
         this.type = type;
+    }
+    
+    private int randomNumber() {
+        return (int) (Math.floor(Math.random() * (1001)));
     }
 
     public void run() {
@@ -53,28 +56,77 @@ public class UserLoginMenu {
                     System.out.print("    Enter your password: ");
                     String password = in.nextLine();
 
-                    Customer customer;
+                    if (type.equals("customer")) {
+                        Customer customer;
 
-                    if (!phoneNumber.isBlank()) {
-                        customer = new Customer(name, phoneNumber);
-                    } else {
-                        customer = new Customer(name);
+                        if (!phoneNumber.isBlank()) {
+                            customer = new Customer(name, phoneNumber);
+                        } else {
+                            customer = new Customer(name);
+                        }
+
+                        customer.setId(customer.getName() + randomNumber());
+                        customer.setPassword(password);
+
+                        while (DataStorage.getAllUsernamesAndPasswords().containsKey(customer.getId())) {
+                            Random random = new Random();
+                            customer.setId("" + random.nextInt(100000, 999999));
+                        }
+
+                        System.out.println("    Your username: " + customer.getId());
+                        System.out.println("    Your password: " + password);
+
+                        login = new LoginManager(type, in, customer);
+                        LoginManager.createAcc(customer.getId(), customer);
                     }
+                    
+                    if (type.equals("employee")) {
+                        Waiter waiter;
 
-                    int randomNumber = (int) (Math.floor(Math.random() * (1001)));
-                    customer.setId(customer.getName() + randomNumber);
-                    customer.setPassword(password);
+                        if (!phoneNumber.isBlank()) {
+                            waiter = new Waiter(name, phoneNumber, "Waiter");
+                        } else {
+                            waiter = new Waiter(name, "Waiter");
+                        }
 
-                    while (DataStorage.getAllUsernamesAndPasswords().containsKey(customer.getId())) {
-                        Random random = new Random();
-                        customer.setId("" + random.nextInt(100000, 999999));
+                        waiter.setId(waiter.getName() + randomNumber());
+                        waiter.setPassword(password);
+
+                        while (DataStorage.getAllUsernamesAndPasswords().containsKey(waiter.getId())) {
+                            Random random = new Random();
+                            waiter.setId("" + random.nextInt(100000, 999999));
+                        }
+
+                        System.out.println("    Your username: " + waiter.getId());
+                        System.out.println("    Your password: " + password);
+
+                        login = new LoginManager(type, in, waiter);
+                        LoginManager.createAcc(waiter.getId(), waiter);
                     }
+                    
+                    if (type.equals("chef")) {
+                        Chef chef;
 
-                    System.out.println("    Your username: " + customer.getId());
-                    System.out.println("    Your password: " + password);
+                        if (!phoneNumber.isBlank()) {
+                            chef = new Chef(name, phoneNumber, "Waiter");
+                        } else {
+                            chef = new Chef(name, "Waiter");
+                        }
 
-                    login = new LoginManager(type, in, customer);
-                    LoginManager.createAcc(customer.getId(), customer);
+                        chef.setId(chef.getName() + randomNumber());
+                        chef.setPassword(password);
+
+                        while (DataStorage.getAllUsernamesAndPasswords().containsKey(chef.getId())) {
+                            Random random = new Random();
+                            chef.setId("" + random.nextInt(100000, 999999));
+                        }
+
+                        System.out.println("    Your username: " + chef.getId());
+                        System.out.println("    Your password: " + password);
+
+                        login = new LoginManager(type, in, chef);
+                        LoginManager.createAcc(chef.getId(), chef);
+                    }
                 }
 
                 case "B" -> quit = false;

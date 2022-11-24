@@ -2,7 +2,6 @@ package People;
 
 /**
  * Super class for all the users of the restaurant.
- * @author italo
  */
 public class Person {
     private String name;

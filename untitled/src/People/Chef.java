@@ -7,6 +7,10 @@ import Restaurant.Order;
  * @author italo
  */
 public class Chef extends Employee{
+    public Chef(String name, String title) {
+        super(name, title);
+    }
+
     /**
      * Constructor with specific name, phone and title
      * @param name

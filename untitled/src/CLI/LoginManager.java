@@ -2,7 +2,10 @@ package CLI;
 
 import java.util.HashMap;
 import java.util.Scanner;
+
+import People.Chef;
 import People.Customer;
+import People.Employee;
 import People.Person;
 import Restaurant.Restaurant;
 import utils.DataStorage;
@@ -32,8 +35,8 @@ public class LoginManager {
     public void run() {
         switch (type) {
             case "customer" -> new UserMenu(in, (Customer) user).run();
-            case "employee" -> new EmployeeMenu(in, user).run();
-            case "chef" -> new ChefMenu(in, user).run();
+            case "employee" -> new EmployeeMenu(in, (Employee) user).run();
+            case "chef" -> new ChefMenu(in, (Chef) user).run();
         }
     }
 
