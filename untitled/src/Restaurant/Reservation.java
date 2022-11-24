@@ -61,7 +61,7 @@ public class Reservation {
     }
 
     public String toCSV(){
-        return  customer.getId() + ", " + date + ", " +
+        return date + ", " +
                 table.getTableNo() + ", " + restaurant.getId() + ", " + noOfCustomer;
     }
 }

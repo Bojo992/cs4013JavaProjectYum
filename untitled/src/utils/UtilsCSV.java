@@ -1,6 +1,7 @@
 package utils;
 
 import People.Chef;
+import People.Customer;
 import People.Waiter;
 import Restaurant.*;
 import java.io.File;
@@ -183,6 +184,76 @@ public class UtilsCSV {
         return restaurants;
     }
 
+    public ArrayList<Customer> readCustomers() throws FileNotFoundException {
+        ArrayList<Customer> customers = new ArrayList<>();
+
+        File customerCSV = new File("customers.csv");
+
+        if (!customerCSV.exists()) {
+            return null;
+        }
+
+        boolean skip = true;
+
+        Scanner in = new Scanner(customerCSV);
+        String line = "";
+
+        while (in.hasNextLine()){
+            line = in.nextLine();
+            String[] lineArray = line.split(", ");
+            String customerSignature = lineArray[0] + ", " +
+                    lineArray[1] + ", " +
+                    lineArray[2] + ", " +
+                    lineArray[3] + ", ";
+
+            Customer customer;
+
+            if (lineArray[1].equals("null")) {
+                customer = new Customer(lineArray[0]);
+            } else {
+                customer = new Customer(lineArray[0], lineArray[1]);
+            }
+
+            customer.setId(lineArray[2]);
+            customer.setPassword(lineArray[3]);
+
+            while (line.contains(customerSignature) && !lineArray[4].equals("null")) {
+                Restaurant restaurant = DataStorage.getAllRestaurants().get(Integer.parseInt(lineArray[6]));
+
+                Reservation reservation = new Reservation(customer,
+                        lineArray[4],
+                        restaurant.getTables().get(Integer.parseInt(lineArray[5])),
+                        restaurant,
+                        Integer.parseInt(lineArray[7]));
+
+                customer.addReservation(reservation);
+                line = in.nextLine();
+            }
+
+            customers.add(customer);
+        }
+
+        return customers;
+    }
+    public void wrightCustomers(ArrayList<Customer> allCustomers) {
+        File clear = new File("customers.csv");
+        try {
+            FileWriter writer = new FileWriter(clear);
+            writer.write("");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Customer customer: allCustomers) {
+            try {
+                writeCustomer(customer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void writeRestaurants(ArrayList<Restaurant> allRestaurants) {
         File clear = new File("restaurant.csv");
         try {
@@ -265,6 +336,34 @@ public class UtilsCSV {
 
         writer.write(restaurantString.toString());
 
+        writer.close();
+    }
+
+    private void writeCustomer(Customer customer) throws IOException {
+        File customerCSV = new File("customers.csv");
+        FileWriter writer;
+
+        if (customerCSV.exists() && customerCSV.canWrite()) {
+            writer = new FileWriter(customerCSV, true);
+        } else {
+            writer = new FileWriter(customerCSV);
+        }
+
+        StringBuilder customerString = new StringBuilder();
+        String customerSignature = customer.getName() + ", " +
+                customer.getPhone() + ", " +
+                customer.getId() + ", " +
+                customer.getPassword() + ", ";
+
+        if (customer.getReservations().isEmpty()) {
+            customerString.append(customerSignature + "null\r\n");
+        }
+
+        for (Reservation reservation: customer.getReservations()) {
+            customerString.append(customerSignature + reservation.toCSV() + "\r\n");
+        }
+
+        writer.write(customerString.toString());
         writer.close();
     }
 }

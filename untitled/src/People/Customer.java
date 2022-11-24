@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Customer extends Person {
-    private int noOfCustomer;
     private ArrayList<Reservation> reservations;
 
     public Customer(String name) {
@@ -18,10 +17,6 @@ public class Customer extends Person {
     public Customer(String name, String phone) {
         super(name, phone);
         reservations = new ArrayList<>();
-    }
-
-    public void makeOrder(Table table, Food food){
-
     }
 
     public void addReservation(Reservation reservation){
