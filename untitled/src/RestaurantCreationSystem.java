@@ -1,19 +1,15 @@
 import CLI.CreateRestaurant;
-import Restaurant.*;
 import utils.UtilsCSV;
 import utils.DataStorage;
-
-import java.io.File;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class RestaurantCreationSystem {
-    public static void main(String[] args) {
-        new CreateRestaurant(new Scanner(System.in));
+    public static void main(String[] args) throws FileNotFoundException {
+        DataStorage.setAllRestaurants(new UtilsCSV().readRestaurants());
 
-        File restCSV = new File("restaurant.csv");
-        for (Restaurant restaurant: DataStorage.getAllRestaurants()) {
+        new CreateRestaurant(new Scanner(System.in)).run();
 
-        }
+        new UtilsCSV().writeRestaurants(DataStorage.getAllRestaurants());
     }
 }
