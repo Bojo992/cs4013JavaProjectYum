@@ -67,9 +67,15 @@ public class Restaurant {
             waiters.add((Waiter) employee);
         }
 
-        String username = employee.getName() + getRandomNum();
+        String username = employee.getName() + getRandomNum().trim();
 
+        while (LoginManager.getLogins().contains(username)) {
+            username = employee.getName() + getRandomNum().trim();
+        }
+
+        employee.setId(username);
         employee.setPassword(password);
+
         LoginManager.createAcc(username, employee);
     }
 

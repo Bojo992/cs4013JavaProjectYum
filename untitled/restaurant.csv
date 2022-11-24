@@ -1,37 +1,11 @@
-restaurant, 0, 2
+restaurant, 0, 1
 tables, 
 0, 1, 
-1, 2, 
 waiters
-test, teset, Waiter, 1702297201, test
+asdf, 123, Waiter, asdf336178, 1234
 chef
-test, test, test, null, null
-orders
-started, 0, lol, 6.0
-started, 0, test, 9.0
-menu
-category, test
-test, 9.0
-test 1, 8.0
-category, qwer
-lol, 6.0
-restaurant, 1, 5
-tables, 
-0, 5, 
-1, 5, 
-2, 5, 
-3, 3, 
-4, 2, 
-waiters
-test, test, Waiter, null, test
-chef
-test, test, test, null, test
-test, test, test, null, test
+asdf, 99, 12, asdf466057, 123
 orders
 menu
-category, test
-test, 9.0
-xc, 8.0
-chicken, 4.9
-category, lunch
-sandwich, 3.0
+category, w
+s, 9.0

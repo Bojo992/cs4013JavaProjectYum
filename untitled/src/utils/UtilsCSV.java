@@ -53,10 +53,12 @@ public class UtilsCSV {
             return null;
         }
 
-        boolean skip = true;
-
         Scanner in = new Scanner(restaurantsCSV);
         String line = "";
+
+        if (!in.hasNextLine()) {
+            return null;
+        }
 
         while (in.hasNextLine()) {
             if (!line.contains("restaurant, ")) {
@@ -184,6 +186,11 @@ public class UtilsCSV {
 
         Scanner in = new Scanner(customerCSV);
         String line = "";
+
+        if (!in.hasNextLine()) {
+            return null;
+        }
+
         line = in.nextLine();
 
         while (in.hasNextLine()){

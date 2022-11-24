@@ -76,6 +76,8 @@ public class UserLoginMenu {
                         System.out.println("    Your username: " + customer.getId());
                         System.out.println("    Your password: " + password);
 
+                        DataStorage.addCustomer(customer);
+
                         login = new LoginManager(type, in, customer);
                         LoginManager.createAcc(customer.getId(), customer);
                     }

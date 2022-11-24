@@ -174,8 +174,9 @@ public class CreateRestaurant {
                     var chef = new Chef(chefName,chefPhoneNumber, chefTitle);
 
                     restaurant.addEmployee(chef, password);
-                    System.out.println();
-                    restaurant.addEmployee(chef, password);
+
+                    System.out.println("Chef's user name: " + chef.getId());
+                    System.out.println("Chef's password: " + chef.getPassword());
                 }
 
                 case "A" -> {
@@ -203,6 +204,9 @@ public class CreateRestaurant {
                     var waiter = new Waiter(waiterName, waiterPhoneNumber, "Waiter");
 
                     restaurant.addEmployee(waiter, password);
+
+                    System.out.println("Waiter's user name: " + waiter.getId());
+                    System.out.println("Waiter's password: " + waiter.getPassword());
                 }
 
                 case "B" -> {

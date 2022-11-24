@@ -85,4 +85,8 @@ public class DataStorage {
     public static void addRestaurant(Restaurant restaurant) {
         allRestaurants.add(restaurant);
     }
+
+    public static void addCustomer(Customer customer) {
+        allCustomers.add(customer);
+    }
 }

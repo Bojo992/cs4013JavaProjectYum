@@ -2,6 +2,7 @@ package CLI;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 import People.*;
 import Restaurant.Restaurant;
@@ -27,6 +28,10 @@ public class LoginManager {
         return !loginManager.isEmpty() &&
                 loginManager.containsKey(username) &&
                 loginManager.get(username).getPassword().equals(passedPassword);
+    }
+
+    public static Set<String> getLogins() {
+        return loginManager.keySet();
     }
 
     public void run() {

@@ -21,9 +21,17 @@ public class MenuCLI {
         UtilsCSV csv = new UtilsCSV();
 
         try {
-            DataStorage.setAllRestaurants(csv.readRestaurants());
-            DataStorage.getAllRestaurants();
+            var rest = csv.readRestaurants();
+            if (rest != null) {
+                DataStorage.setAllRestaurants(rest);
+            }
+
+            var cust = csv.readCustomers();
+            if (cust != null) {
+                DataStorage.setAllCustomers(cust);
+            }
         } catch (FileNotFoundException e) {
+            System.out.println("Create restaurants.csv and customer.csv");
         }
 
         while (true) {
@@ -52,6 +60,7 @@ public class MenuCLI {
                 case "U" -> new UserLoginMenu(in, "customer").run();
                 case "Q" -> {
                     csv.writeRestaurants(DataStorage.getAllRestaurants());
+                    csv.wrightCustomers(DataStorage.getAllCustomers());
                     quit = false;
                 }
             }
