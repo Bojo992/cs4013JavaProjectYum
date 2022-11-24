@@ -196,4 +196,9 @@ public class Restaurant {
 
         return t;
     }
+
+    @Override
+    public String toString() {
+        return "Restaurant id: " + id;
+    }
 }

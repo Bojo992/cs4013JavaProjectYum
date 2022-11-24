@@ -1,6 +1,7 @@
 package Restaurant;
 
 import java.util.ArrayList;
+import java.util.TooManyListenersException;
 
 public class Order {
     private String status;
@@ -44,5 +45,10 @@ public class Order {
 
     public void setTableOrder(Table tableOrder) {
         this.table = tableOrder;
+    }
+
+    @Override
+    public String toString() {
+        return "Order status: " + status + ", Table number: " +  table.getTableNo();
     }
 }

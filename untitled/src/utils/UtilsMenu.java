@@ -50,6 +50,8 @@ public abstract class UtilsMenu {
         int i = 1;
         for (Object c:choices){
             System.out.printf(" %d) %s", i, c.toString());
+            System.out.println();
         }
+        System.out.println();
     }
 }

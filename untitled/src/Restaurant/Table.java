@@ -51,5 +51,8 @@ public class Table {
         availability.remove(date);
     }
 
-
+    @Override
+    public String toString() {
+        return "Table number: " + tableNo + ", Number of seats: " + seats;
+    }
 }
